@@ -1,0 +1,1008 @@
+{
+	"data": [
+	{
+		"counties": [],
+		"hospitals": [
+		{
+			"title": "Bowie Hospital Center",
+			"short": "Bowie Hospital",
+			"slug": "bowie-hospital",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.9495054,
+				"long": -76.7470845
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Calvert Memorial Hospital",
+			"short": "Calvert Memorial",
+			"slug": "calvert-memorial",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.56015,
+				"long": -76.5984927
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": true
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Charles Regional (UM)",
+			"short": "Charles Regional",
+			"slug": "charles-regional",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.5293385,
+				"long": -76.9755903
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": true
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": true
+				}
+			}
+		},
+		{
+			"title": "Doctors Community Hospital",
+			"short": "Doctors Community",
+			"slug": "doctors-community",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.9822335,
+				"long": -76.8673486
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{	
+			"title": "Fort Washington Hospital",
+			"short": "Fort Washington",
+			"slug": "fort-washington",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.7285124,
+				"long": -76.9947758
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"id": 6,
+			"title": "Germantown EC",
+			"short": "Germantown EC",
+			"slug": "germantown-ec",
+			"region": "5",
+			"loc":
+			{
+				"lat": 39.1795929,
+				"long": -77.265747
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Holy Cross Germantown",
+			"short": "Holy Cross Germantown",
+			"slug": "holy-cross-germantown",
+			"region": "5",
+			"loc":
+			{
+				"lat": 39.1817574,
+				"long": -77.244593
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Holy Cross Hospital",
+			"short": "Holy Cross Hospital",
+			"slug": "holy-cross-hospital",
+			"region": "5",
+			"loc":
+			{
+				"lat": 39.0018567,
+				"long": -77.04834
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Laurel Regional Medical Center",
+			"short": "Laurel Regional",
+			"slug": "laurel-regional",
+			"region": "5",
+			"loc":
+			{
+				"lat": 39.0869021,
+				"long": -76.8838165
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Malcolm Grow",
+			"short": "Malcolm Grow",
+			"slug": "malcolm-grow",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.8092116,
+				"long": -76.8978642
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Montgomery Medical Center (MedStar)",
+			"short": "Montgomery General",
+			"slug": "montgomery-general",
+			"region": "5",
+			"loc":
+			{
+				"lat": 39.1538133,
+				"long": -77.057418
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Prince Georges Hospital Center",
+			"short": "Prince Georges",
+			"slug": "prince-georges",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.9308958,
+				"long": -76.9231506
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": false,
+					"trauma_two": true,
+					"trauma_three": true,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": true
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": true
+				}
+			}
+		},
+		{
+			"title": "Shady Grove Advent Hospital",
+			"short": "Shady Grove",
+			"slug": "shady-grove",
+			"region": "5",
+			"loc":
+			{
+				"lat": 39.0982637,
+				"long": -77.2002068
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": true
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": true
+				}
+			}
+		},
+		{
+			"title": "Southern Maryland Hospital (MedStar)",
+			"short": "Southern Maryland",
+			"slug": "southern-maryland",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.7483414,
+				"long": -76.8778664
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "St. Mary’s Hospital (MedStar)",
+			"short": "St. Mary's",
+			"slug": "st-marys",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.3020444,
+				"long": -76.6404616
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": true
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": true
+				}
+			}
+		},
+		{
+			"title": "Suburban Hospital (JHM)",
+			"short": "Suburban",
+			"slug": "suburban",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.9972893,
+				"long": -77.1120636
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": false,
+					"trauma_two": true,
+					"trauma_three": true,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Walter Reed NMMC",
+			"short": "Walter Reed",
+			"slug": "walter-reed",
+			"region": "5",
+			"loc":
+			{
+				"lat": 39.0015809,
+				"long": -77.096056
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": true,
+					"trauma_three": true,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "White Oak Medical Center (Adventist)",
+			"short": "White Oak",
+			"slug": "white-oak",
+			"region": "5",
+			"loc":
+			{
+				"lat": 39.050523,
+				"long": -76.956745
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Childrens National Medical Center",
+			"short": "Childrens National",
+			"slug": "childrens-national",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.9268055,
+				"long": -77.0167978
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": true,
+					"trauma_two": true,
+					"trauma_three": true,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": true,
+					"perinatal": false,
+					"safe": true
+				}
+			}
+		},
+		{
+			"title": "George Washington Hospital",
+			"short": "George Washington",
+			"slug": "george-washington",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.901305,
+				"long": -77.0528293
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": true,
+					"trauma_two": true,
+					"trauma_three": true,
+					"hyperbaric": true,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": true,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Georgetown University (MedStar)",
+			"short": "Georgetown",
+			"slug": "georgetown",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.9116562,
+				"long": -77.0778092
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Howard University Hospital",
+			"short": "Howard University",
+			"slug": "howard-univerity",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.9180744,
+				"long": -77.022536
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": true,
+					"trauma_two": true,
+					"trauma_three": true,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "MedStar Washington Hospital Center",
+			"short": "MedStar Washington",
+			"slug": "medstar-washington",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.9294835,
+				"long": -77.0172658
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": true,
+					"trauma_one": true,
+					"trauma_two": true,
+					"trauma_three": true,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": true,
+					"perinatal": false,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": false,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "Sibley Memorial Hospital (JHM)",
+			"short": "Sibley Memorial",
+			"slug": "sibley-memorial",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.9369009,
+				"long": -77.1102798
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": false,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": true,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				}
+			}
+		},
+		{
+			"title": "United Medical Center",
+			"short": "United Medical",
+			"slug": "united-medical",
+			"region": "5",
+			"loc":
+			{
+				"lat": 38.8359393,
+				"long": -76.9871769
+			},
+			"attributes":
+			{
+				"adult":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				},
+				"pediatric":
+				{
+					"general": true,
+					"cardiac": false,
+					"trauma_one": false,
+					"trauma_two": false,
+					"trauma_three": false,
+					"hyperbaric": false,
+					"stroke": false,
+					"burn": false,
+					"perinatal": true,
+					"safe": false
+				}
+			}
+		}]
+	}]
+}
