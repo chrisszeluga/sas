@@ -16,6 +16,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Takes the raw requests and turns them into usable properties on req.body
 app.use(bodyParser.json());
+app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // pass variables to our templates + all requests

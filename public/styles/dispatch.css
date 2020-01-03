@@ -1,0 +1,98 @@
+html,
+body {
+	height: 100%;
+}
+
+body {
+	font-family: Lato, "Open Sans", "Segoe UI", Tahoma, sans-serif;
+	overflow-y: hidden;
+}
+
+.bg-primary {
+	background-color: #3498db !important;
+}
+
+.right {
+	padding: 2rem 4rem;
+}
+
+.left {
+	padding: 1rem;
+}
+
+.left .logo {
+	max-width: 100%;
+	margin-bottom: 2rem;
+}
+
+.call {
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
+
+.call .time {
+	margin-bottom: 0.25rem;
+}
+
+.call ul.address {
+	list-style: none;
+	padding: 0;
+}
+
+.call ul.address li:first-child {
+	font-size: 1.25rem;
+	font-weight: 700;
+}
+
+.call .type {
+	padding: 0.5rem 0;
+	font-weight: 700;
+}
+
+#waiting {
+	display: none;
+	font-size: 2rem;
+	padding: 5rem 0;
+	opacity: 0.8;
+}
+
+/* COUNTER */
+#counter {
+	font-size: 4rem;
+	display: none;
+}
+
+/* MAP */
+
+.directions {
+	height: 90vh;
+}
+
+#disclaimer {
+	padding-top: 1rem;
+}
+
+#disclaimer p {
+	margin-bottom: 0;
+}
+
+#directionsItinerary {
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+}
+
+#directionsItinerary::-webkit-scrollbar {
+	display: none;
+}
+
+#myMap {
+	height: 90vh;
+}
+
+.drTitle {
+	display: none;
+}
+
+.dirInstructionTravelDistance {
+	display: none;
+}

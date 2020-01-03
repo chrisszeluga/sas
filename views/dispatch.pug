@@ -1,0 +1,35 @@
+html
+  head
+    title Wheaton Screens
+    link(href='https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap' rel='stylesheet')
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+    link(rel='stylesheet' type='text/css' href='styles/dispatch.css')
+  body
+    .container-fluid.h-100
+      .row.h-100
+        .col-sm-3.h-100.text-white.bg-primary.left.d-flex.flex-column.justify-content-between
+          #top
+            img.logo(src='images/logo.png')
+            #waiting Waiting for call...
+          #counter
+            span#minutes 0
+            | :
+            span#seconds 00
+        .col-sm-9.h-100.d-flex.flex-column.right
+          #new-call.row.flex-grow-1
+            .col
+              .directions.d-flex.flex-column.justify-content-between
+                #birdseyeMap
+                #streetsideMap
+                #disclaimer
+                  p
+                    strong Not guaranteed to be accurate.
+                  p Always use the MDC to confirm running route.
+            .col
+              #directionsMap
+          #no-call
+            #chats
+    script(src='https://cdn.socket.io/socket.io-1.2.0.js')
+    script(src='https://code.jquery.com/jquery-1.11.1.js')
+    script(src='https://www.bing.com/api/maps/mapcontrol?key=AkIUP452_CnvrnWNBvHEkF5xvPZoSfbW1dnQHq8vWmmgTk_ToTwPiOPRNxuYVeRk')
+    script(src='scripts/dispatch.js')
