@@ -1,0 +1,260 @@
+/* Timeline */
+
+.timeline_container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  margin-top: 15px;
+}
+.timeline_container .timeline {
+  position: relative;
+  height: 95px;
+  overflow: hidden;
+}
+.timeline_container .timeline .hour_ticks {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+}
+.timeline_container .timeline .hour_ticks span {
+  position: absolute;
+  display: inline-block;
+  width: 2px;
+  height: 8px;
+  border-left: 1px solid #999;
+}
+.timeline_container .timeline .hour_ticks span.even {
+  height: 5px;
+}
+.timeline_container .timeline .hour_ticks span.second {
+  height: 5px;
+}
+.timeline_container .timeline .hours {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  font-weight: 500;
+}
+.timeline_container .timeline .hours .hour {
+  position: absolute;
+  display: inline-block;
+  width: 10px;
+  height: 5px;
+}
+.timeline_container .timeline .hours .hour span {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  width: 80px;
+  left: -40px;
+  text-align: center;
+  font-size: 14px;
+  color: #222;
+}
+.timeline_container.reversed .timeline .hours .hour span {
+  left: auto;
+  right: -40px;
+}
+.timeline_container .timeline .hours .hour.first span {
+  text-align: left;
+  left: 0;
+}
+.timeline_container.reversed .timeline .hours .hour.first span {
+  text-align: right;
+  right: 0;
+  left: auto;
+}
+.timeline_container .timeline .stripes {
+  z-index: 3;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 5px; /* 10 */
+}
+.timeline_container .timeline .stripes > span {
+  position: absolute;
+  height: 100%;
+  color: #fff;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.timeline_container .timeline .stripes > span > span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 0 3px;
+  line-height: 40px;
+  font-size: 13px;
+  font-weight: 400;
+  /* opacity: 0.9; */
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.timeline_container .timeline .stripes > span > span.clear {
+  color: rgba(0, 0, 0, 0.7);
+}
+body .timeline_container .timeline .stripes > span {
+  /* background-color: rgba(147, 147, 147, 0.07); */
+}
+/* Clear */
+body .timeline_container .timeline .stripes > span.c0 {
+  background-color: #EEEEF5;
+  color: #333;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+body .timeline_container .timeline .stripes > span.p0 {
+  background-color: #EEEEF5;
+  color: #333;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+/* Sprinkling / Flurries */
+body .timeline_container .timeline .stripes > span.p1 {
+  background-color: #96b4da;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.15);
+}
+/* Partly Cloudy / Light Rain */
+body .timeline_container .timeline .stripes > span.c1 {
+  background-color: #d5dae2;
+  color: #333;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+body .timeline_container .timeline .stripes > span.p2 {
+  background-color: #80a5d6;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.15);
+}
+/* Cloudy / Rain */
+body .timeline_container .timeline .stripes > span.c2 {
+  background-color: #b6bfcb;
+  color: #222;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+body .timeline_container .timeline .stripes > span.p3 {
+  background-color: #4a80c7;
+  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.25);
+}
+/* Heavy Rain */
+body .timeline_container .timeline .stripes > span.p4 {
+  background-color: #3267ad;
+}
+body .timeline_container .timeline .stripes > span.p5 {
+  background-color: #3267ad;
+}
+
+body .timeline_container .timeline .stripes > span {
+  overflow: hidden;
+}
+
+/* Clear */
+body .timeline_container .timeline .stripes > span.timeline-stripe-0 {
+  background-color: #eeeef5;
+  color: #333;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Partly Cloudy */
+body .timeline_container .timeline .stripes > span.timeline-stripe-1 {
+  background-color: #d5dae2;
+  color: #333;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Mostly Cloudy */
+body .timeline_container .timeline .stripes > span.timeline-stripe-2 {
+  background-color: #b6bfcb;
+  color: #333;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Overcast */
+body .timeline_container .timeline .stripes > span.timeline-stripe-3 {
+  background-color: #878f9a;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Light Rain */
+body .timeline_container .timeline .stripes > span.timeline-stripe-4 {
+  background-color: #80a5d6;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Rain */
+body .timeline_container .timeline .stripes > span.timeline-stripe-5 {
+  background-color: #4a80c7;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Light Snow */
+body .timeline_container .timeline .stripes > span.timeline-stripe-6 {
+  background-color: #aba4db;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Snow */
+body .timeline_container .timeline .stripes > span.timeline-stripe-7 {
+  background-color: #8c82ce;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+
+.timeline_container .timeline .temps {
+  z-index: 3;
+  position: absolute;
+  left: 0;
+  top: 70px;
+  width: 100%;
+  font-weight: 300;
+}
+.timeline_container .timeline .temps > span {
+  position: absolute;
+}
+.timeline_container .timeline .temps > span > span {
+  position: absolute;
+  top: 0;
+  font-size: 18px;
+  color: #000;
+  width: 50px;
+  left: -23px;
+  text-align: center;
+}
+.timeline_container .timeline .temps > span.first > span {
+  text-align: left;
+  left: 0;
+}
+.timeline_container.reversed .timeline .temps > span.first > span {
+  text-align: right;
+  right: 0;
+  left: auto;
+}
+.timeline_container .timeline .now {
+  position: absolute;
+  top: 44px;
+  z-index: 4;
+  width: 2px;
+  height: 51px;
+  background-color: #F00;
+  opacity: 0.5;
+}
+.timeline_container .timeline.hide_now .now {
+  display: none;
+}
+.timeline_container .timeline .icons {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  top: 24px;
+}
+.timeline_container .timeline .icons .icon {
+  position: absolute;
+  /* top: -9px; */
+}

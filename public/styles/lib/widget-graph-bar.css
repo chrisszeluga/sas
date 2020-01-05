@@ -1,0 +1,140 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vert-align {
+  width: 100%;
+}
+
+body.day .dayDetails #summary {
+  font-size: 16px;
+  margin: 20px 5px 10px;
+}
+
+body.day #timeline {
+  margin: 5px 0 0;
+}
+
+#currentDetailsTitle {
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+body.day #currentDetails .section {
+  width: 22%;
+}
+
+body.day #currentDetails {
+  width: auto !important;
+}
+
+#attribution {
+  font-size: 0.8em;
+  padding-right: 15px;
+  text-align: right;
+}
+
+#attribution a {
+  color: rgb(51, 51, 51);
+  text-decoration: underline;
+}
+
+.widget-logo {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  top: 3px;
+  left: 2px;
+}
+
+@media (max-width: 500px) {
+  body.day .dayDetails #summary {
+    margin: 20px 5px 5px !important;
+    font-size: 20px !important;
+  }
+  .dayExtras .highLowTemp .temp {
+    font-size: 20px;
+  }
+  .dayExtras .highLowTemp .time {
+    font-size: 14px;
+  }
+  .highLowTemp,
+  .sunTimes,
+  .precipAccum {
+    margin-top: 10px !important;
+  }
+  .timeline_container .timeline .hours .hour span {
+    font-size: 10px;
+  }
+  .timeline_container .timeline .hours .hour:nth-child(even) span {
+    display: none !important;
+  }
+  .timeline_container .timeline .temps > span > span {
+    font-size: 12px !important;
+  }
+  #timeline .hours .hour.first {
+    display: none;
+  }
+  #timeline .temps .first {
+    display: none;
+  }
+  .timeline_container .timeline .hours,
+  .timeline_container .timeline .temps {
+    left: -10px;
+  }
+}
+
+@media (max-width: 300px) {
+  .highLowTemp span {
+    display: block;
+  }
+
+  .timeline_container .timeline .temps {
+    top: 65px;
+  }
+
+  .timeline_container .timeline .hours {
+    top: 60px;
+  }
+
+  .timeline_container .timeline .hours .hour span {
+    font-size: 7px;
+  }
+
+  .highLowTemp .arrow {
+    transform: rotate(90deg);
+  }
+
+  .sunTimes .sunrise,
+  .sunTimes .sunset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sunTimes .sunset {
+    margin-top: 5px !important;
+  }
+}
+
+@media (max-height: 250px) {
+  #currentDetails {
+    display: none !important;
+  }
+}
+
+@media (max-height: 250px) {
+  #summary,
+  .dayExtras {
+    display: none;
+  }
+}

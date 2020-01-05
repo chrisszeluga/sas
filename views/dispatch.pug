@@ -3,8 +3,14 @@ html
     title Wheaton Screens
     link(href='https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap' rel='stylesheet')
     link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh' crossorigin='anonymous')
+    
+    link(rel='stylesheet' type='text/css' href='styles/lib/current-details.css')
+    link(rel='stylesheet' type='text/css' href='styles/lib/timeline.css')
+    link(rel='stylesheet' type='text/css' href='styles/lib/widget-graph-bar.css')
+
+
     link(rel='stylesheet' type='text/css' href='styles/dispatch.css')
-  body
+  body.day
     .container-fluid.h-100
       .row.h-100
         .col-sm-3.h-100.text-white.bg-primary.left.d-flex.flex-column.justify-content-between
@@ -29,7 +35,149 @@ html
               #directionsMap
           #no-call
             #chats
+              h2 Hospital Statuses
+              p.small.text-muted.updated
+                | Last updated at 
+                span 
+              .row
+                .col.border-right
+                  .hospital#holy-cross-hospital
+                    .name Holy Cross Hospital
+                    .statuses
+                      .color.yellow y
+                      .color.red r
+                      .color.green g
+                      .color.orange o
+                      .color.purple p
+                      .no no alerts
+                  .hospital#suburban
+                    .name Suburban
+                    .statuses
+                      .color.yellow y
+                      .color.red r
+                      .color.green g
+                      .color.orange o
+                      .color.purple p
+                      .no no alerts
+                  .hospital#montgomery-general
+                    .name Medstar Montgomery
+                    .statuses
+                      .color.yellow y
+                      .color.red r
+                      .color.green g
+                      .color.orange o
+                      .color.purple p
+                      .no no alerts
+                  .hospital#white-oak
+                    .name White Oak
+                    .statuses
+                      .color.yellow y
+                      .color.red r
+                      .color.green g
+                      .color.orange o
+                      .color.purple p
+                      .no no alerts
+                  
+                .col.pl-4
+                  .hospital#shady-grove
+                    .name Shady Grove
+                    .statuses
+                      .color.yellow y
+                      .color.red r
+                      .color.green g
+                      .color.orange o
+                      .color.purple p
+                      .no no alerts
+                  .hospital#medstar-washington
+                    .name Medstar Washington
+                    .statuses
+                      .color.yellow y
+                      .color.red r
+                      .color.green g
+                      .color.orange o
+                      .color.purple p
+                      .no no alerts
+                  .hospital#childrens-national
+                    .name Childrens's National
+                    .statuses
+                      .color.yellow y
+                      .color.red r
+                      .color.green g
+                      .color.orange o
+                      .color.purple p
+                      .no no alerts
+            #weather.dayDetails.mt-4.pt-4.border-top
+              h2.float-left Weather
+              .float-right.mt-1.d-flex.align-items-center
+                canvas#summary-icon(width='30', height='30')
+                p#summary.mt-0.mb-0.pb-1 
+            #slider
+              .handle
+                .line
+            .scroll-container
+              #timeline.timeline_container
+                .timeline
+                  .stripes
+                  .hour_ticks
+                  .hours
+                  .temps
+            #currentDetails.mt-4.mb-4
+              p#currentDetailsTitle.pb-0.mb-1 Current Conditions
+              .section
+                .temperature
+                  span.label.swip Temp:
+                  span.val.swap
+                    span.num 
+                    span.unit &ring;
+                .precipProbability
+                  span.label.swip Precip:
+                  span.val.swap
+                    span.num.swip 
+                    span.unit.swap %
+              .section
+                .wind
+                  span.label.swip Wind:
+                  span.val.swap
+                    span.num.swip 
+                    span.unit.swap mph
+                    span.direction.d-inline-block.ml-1(style='') &uarr;
+                .pressure
+                  span.label.swip Pressure:
+                  span.val.swap
+                    span.num.swip 
+                    span.unit.swap mb
+              .section
+                .humidity
+                  span.label.swip Humidity:
+                  span.val.swap
+                    span.num.swip 
+                    span.unit.swap %
+                .dew_point
+                  span.label.swip Dew Pt:
+                  span.val.swap
+                    span.num 
+                    span.unit &ring;
+              .section
+                .uv_index
+                  span.label.swip UV Index:
+                  span.val.swap
+                    span.num 0
+                .visibility
+                  span.label.swip Visibility:
+                  span.val.swap
+                    span.num.swip 
+                    span.unit.swap mi
+            #weather-alerts
+
+
     script(src='https://cdn.socket.io/socket.io-1.2.0.js')
     script(src='https://code.jquery.com/jquery-1.11.1.js')
+    //- This Bing Maps API key is a client-side key that is domain restricted. It is purposefully committed. 
     script(src='https://www.bing.com/api/maps/mapcontrol?key=AkIUP452_CnvrnWNBvHEkF5xvPZoSfbW1dnQHq8vWmmgTk_ToTwPiOPRNxuYVeRk')
+
+    script(src='scripts/lib/moment.min.js')
+    script(src='scripts/lib/timeline.js')
+
     script(src='scripts/dispatch.js')
+    script(src='scripts/dispatch-hospitals.js')
+    script(src='scripts/dispatch-weather.js')

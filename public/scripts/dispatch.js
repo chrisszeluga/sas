@@ -190,7 +190,7 @@ $(function() {
 
     // Populates the call details
     var callDom = `<div class="call">
-      <div class="time">${call.time}</div>
+      <div class="time">${moment(call.time).format("kk:mma")}</div>
       <ul class="address">
         ${call.address.map(i => `<li>` + i + `</li>`).join("")}
       </ul>
@@ -205,6 +205,7 @@ $(function() {
     GetMap(call.address.join(", "));
 
     // Unhides the call
+    $("#no-call").hide();
     $("#new-call").show();
   }
 

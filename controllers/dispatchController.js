@@ -8,31 +8,23 @@ const parseCall = msg => {
 		return;
 	}
 
-	var msgSplit = msg.split(" * ");
-	var msgLength = msgSplit.length;
+	let msgSplit = msg.split(" * ");
+	let msgLength = msgSplit.length;
 
-	var call = {
+	let call = {
 		incident: msgSplit[0].split(" ")[2],
 		type: msgSplit[1],
 		units: msgSplit[msgLength - 1].replace("Units: ", ""),
 		box: msgSplit[msgLength - 2].replace("Box Area: ", "")
 	};
 
-	var location = [];
-	for (var i = 2; i <= msgLength - 3; i++) {
+	let location = [];
+	for (let i = 2; i <= msgLength - 3; i++) {
 		location.push(msgSplit[i]);
 	}
 	call["address"] = location;
 
-	var today = new Date();
-	var time =
-		today.getHours() -
-		5 +
-		":" +
-		(today.getMinutes() < 10 ? "0" : "") +
-		today.getMinutes();
-
-	call["time"] = time;
+	call["time"] = new Date();
 
 	return call;
 };

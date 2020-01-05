@@ -1,5 +1,5 @@
 // import environmental variables from our variables.env file
-require("dotenv").config({ path: "variables.env" });
+require("dotenv").config({ path: ".env" });
 
 // Start our app!
 const app = require("./app");

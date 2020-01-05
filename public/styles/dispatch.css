@@ -76,23 +76,60 @@ body {
 	margin-bottom: 0;
 }
 
-#directionsItinerary {
-	overflow-y: scroll;
-	-ms-overflow-style: none;
-}
-
-#directionsItinerary::-webkit-scrollbar {
-	display: none;
-}
-
-#myMap {
+#directionsMap {
 	height: 90vh;
 }
 
-.drTitle {
+/* HOSPITAL */
+.hospital {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+.hospital .name {
+	font-size: 1.25rem;
+}
+
+.hospital .statuses {
+	display: flex;
+}
+
+.hospital .statuses .color {
+	color: white;
+	padding: 5px 12px;
+	border-radius: 20px;
+	margin-right: 1rem;
+	text-transform: uppercase;
 	display: none;
 }
 
-.dirInstructionTravelDistance {
+.hospital .statuses .color.yellow {
+	background: #f1c40f;
+}
+
+.hospital .statuses .color.red {
+	background: #e74c3c;
+}
+
+.hospital .statuses .color.orange {
+	background: #ff9800;
+}
+
+.hospital .statuses .color.purple {
+	background: #673ab7;
+}
+
+.hospital .statuses .color.green {
+	background: #27ae60;
+}
+
+.hospital .statuses .no {
+	margin-right: 1rem;
 	display: none;
+}
+
+.weather-alert .description {
+	clear: both;
 }
