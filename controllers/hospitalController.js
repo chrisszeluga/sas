@@ -7,7 +7,7 @@ const fs = require("fs").promises;
 // New caching instance
 const cachiosInstance = cachios.create(
   axios.create({
-    timeout: 10000
+    timeout: 15000
   })
 );
 

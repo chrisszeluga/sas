@@ -2,17 +2,21 @@ $(function() {
   var socket = io();
 
   // Function to create directions
-  var map;
+  var directionsMap;
+  var birdseyeMap;
+  var streetsideMap;
   var directionsManager;
   function GetMap(inputAddress) {
-    map = new Microsoft.Maps.Map("#directionsMap", {
+    directionsMap = new Microsoft.Maps.Map("#directionsMap", {
       showDashboard: false,
-      autoUpdateMapView: true
+      zoom: 16
     });
     //Load the directions module and map
     Microsoft.Maps.loadModule("Microsoft.Maps.Directions", function() {
       //Create an instance of the directions manager.
-      directionsManager = new Microsoft.Maps.Directions.DirectionsManager(map);
+      directionsManager = new Microsoft.Maps.Directions.DirectionsManager(
+        directionsMap
+      );
       //Create waypoints to route between.
       var wvrsWaypoint = new Microsoft.Maps.Directions.Waypoint({
         address: "Wheaton Rescue Squad",
@@ -20,15 +24,19 @@ $(function() {
       });
       directionsManager.addWaypoint(wvrsWaypoint);
       var callWaypoint = new Microsoft.Maps.Directions.Waypoint({
-        address: inputAddress
+        address: inputAddress + ", Montgomery County, Maryland, United States"
       });
       directionsManager.addWaypoint(callWaypoint);
       //Specify the element in which the itinerary will be rendered.
       directionsManager.setRenderOptions({
+        autoUpdateMapView: true,
         displayDisclaimer: false,
         displayRouteSelector: false,
         firstWaypointPushpinOptions: {
           color: Microsoft.Maps.Color.fromHex("#3498DB")
+        },
+        lastWaypointPushpinOptions: {
+          title: "Dispatched Address"
         }
       });
       directionsManager.setRequestOptions({
@@ -48,18 +56,17 @@ $(function() {
         directionsManager,
         "directionsUpdated",
         function(e) {
-          setBirdseyeMap(e);
-          setStreetsideMap(e);
-          sanityCheckDirections(e);
+          var currentRoute = directionsManager.getCurrentRoute();
+
+          setBirdseyeMap(currentRoute);
+          setStreetsideMap(currentRoute);
+          sanityCheckDirections(currentRoute);
         }
       );
     });
     $("#disclaimer").show();
   }
-  function setBirdseyeMap(e) {
-    console.log(directionsManager.getCurrentRoute());
-
-    var currentRoute = directionsManager.getCurrentRoute();
+  function setBirdseyeMap(currentRoute) {
     var endLocation =
       currentRoute.routeLegs[currentRoute.routeLegs.length - 1]
         .endWaypointLocation;
@@ -91,13 +98,12 @@ $(function() {
     birdseyeMap.layers.insert(birdseyeLayer);
   }
 
-  function setStreetsideMap(e) {
-    var currentRoute = directionsManager.getCurrentRoute();
+  function setStreetsideMap(currentRoute) {
     var endLocation =
       currentRoute.routeLegs[currentRoute.routeLegs.length - 1]
         .endWaypointLocation;
 
-    var streetsideMap = new Microsoft.Maps.Map("#streetsideMap", {
+    streetsideMap = new Microsoft.Maps.Map("#streetsideMap", {
       center: endLocation,
       mapTypeId: Microsoft.Maps.MapTypeId.streetside,
       streetsideOptions: {
@@ -111,9 +117,7 @@ $(function() {
     });
   }
 
-  function sanityCheckDirections(e) {
-    var currentRoute = directionsManager.getCurrentRoute();
-
+  function sanityCheckDirections(currentRoute) {
     // Sanity check route length and duration
     var routeDistance =
       currentRoute.routeLegs[currentRoute.routeLegs.length - 1].summary
@@ -121,7 +125,24 @@ $(function() {
     var routeTime =
       currentRoute.routeLegs[currentRoute.routeLegs.length - 1].summary.time;
 
-    // TODO
+    var errorText = "";
+    var errors = 0;
+
+    if (routeDistance >= 10) {
+      errors++;
+      errorText += "Distance is greater than 10 miles. ";
+    }
+
+    if (routeTime >= 900) {
+      errors++;
+      errorText += "Driving time is greater than 15 minutes. ";
+    }
+
+    if (errors > 0) {
+      $("#top").append(
+        `<div class="error"><strong>Warning:</strong> ${errorText}Map may not be accurate.</div>`
+      );
+    }
   }
 
   function directionsError(e) {
@@ -136,6 +157,7 @@ $(function() {
 
   // Resets the screen to a starting state
   function reset() {
+    $("#top .error").remove();
     $("#top .call").remove();
     $("#counter").hide();
     $("#new-call").hide();
@@ -202,7 +224,7 @@ $(function() {
     $("#top").append(callDom);
 
     // Generates the map
-    GetMap(call.address.join(", "));
+    GetMap(call.address[0]);
 
     // Unhides the call
     $("#no-call").hide();

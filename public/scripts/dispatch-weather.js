@@ -50,7 +50,9 @@ $(function() {
 			`rotate(${currently.windBearing}deg)`
 		);
 		$("#currentDetails .pressure .num").text(currently.pressure.toFixed());
-		$("#currentDetails .humidity .num").text(currently.humidity * 100);
+		$("#currentDetails .humidity .num").text(
+			(currently.humidity * 100).toFixed()
+		);
 		$("#currentDetails .dew_point .num").text(currently.dewPoint.toFixed());
 		$("#currentDetails .uv_index .num").text(currently.uvIndex);
 		$("#currentDetails .visibility .num").text(currently.visibility);

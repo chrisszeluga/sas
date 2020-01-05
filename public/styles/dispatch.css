@@ -56,6 +56,13 @@ body {
 	opacity: 0.8;
 }
 
+#top .error {
+	border: 3px dashed red;
+	padding: 1rem;
+	background: white;
+	color: #212529;
+}
+
 /* COUNTER */
 #counter {
 	font-size: 4rem;

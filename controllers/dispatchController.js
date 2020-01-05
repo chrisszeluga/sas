@@ -14,7 +14,11 @@ const parseCall = msg => {
 	let call = {
 		incident: msgSplit[0].split(" ")[2],
 		type: msgSplit[1],
-		units: msgSplit[msgLength - 1].replace("Units: ", ""),
+		// prettier-ignore
+		units: msgSplit[msgLength - 1]
+			.replace(/(, FS)\w\w/, "")
+			.replace(/(, ECC)\w/, "")
+			.replace("Units: ", ""),
 		box: msgSplit[msgLength - 2].replace("Box Area: ", "")
 	};
 
@@ -36,6 +40,8 @@ exports.getDispatches = async (req, res) => {
 exports.broadcastDispatch = async (req, res) => {
 	let io = req.app.get("socketio");
 
-	io.emit("new call", parseCall(req.body));
+	console.log(req.body);
+
+	//io.emit("new call", parseCall(req.body));
 	res.send({});
 };
