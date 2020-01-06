@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const routes = require("./routes/index");
 const helpers = require("./helpers");
 const errorHandlers = require("./handlers/errorHandlers");
+const multer = require("multer")();
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(multer.array());
 
 // pass variables to our templates + all requests
 app.use((req, res, next) => {

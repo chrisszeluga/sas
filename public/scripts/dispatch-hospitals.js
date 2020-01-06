@@ -38,7 +38,7 @@ $(function() {
 		});
 
 		// Update time
-		var updatedAt = moment(data.updatedAt).format("hh:mma");
+		var updatedAt = moment(data.updatedAt).format("h:mma");
 		$(".updated span").text(updatedAt);
 	}
 

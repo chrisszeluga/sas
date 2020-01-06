@@ -50,7 +50,6 @@ body {
 }
 
 #waiting {
-	display: none;
 	font-size: 2rem;
 	padding: 5rem 0;
 	opacity: 0.8;
@@ -66,7 +65,6 @@ body {
 /* COUNTER */
 #counter {
 	font-size: 4rem;
-	display: none;
 }
 
 /* MAP */
@@ -85,6 +83,10 @@ body {
 
 #directionsMap {
 	height: 90vh;
+}
+
+.hide {
+	display: none !important;
 }
 
 /* HOSPITAL */

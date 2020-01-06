@@ -16,13 +16,15 @@ html
         .col-sm-3.h-100.text-white.bg-primary.left.d-flex.flex-column.justify-content-between
           #top
             img.logo(src='images/logo.png')
-            #waiting Waiting for call...
-          #counter
+            #waiting.hide Waiting for call...
+          #counter.hide
             span#minutes 0
             | :
             span#seconds 00
         .col-sm-9.h-100.d-flex.flex-column.right
           #new-call.row.flex-grow-1
+            .col
+              #directionsMap
             .col
               .directions.d-flex.flex-column.justify-content-between
                 #birdseyeMap
@@ -31,8 +33,6 @@ html
                   p
                     strong Not guaranteed to be accurate.
                   p Always use the MDC to confirm running route.
-            .col
-              #directionsMap
           #no-call
             #chats
               h2 Hospital Statuses

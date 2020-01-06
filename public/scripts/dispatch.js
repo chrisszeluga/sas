@@ -3,13 +3,22 @@ $(function() {
 
   // Function to create directions
   var directionsMap;
-  var birdseyeMap;
-  var streetsideMap;
   var directionsManager;
   function GetMap(inputAddress) {
+    // Unhides the call
+    // Needed before map drawing so Microsoft can size and zoom correctly
+    // Using visibility as a proxy for hiding, to minimize map jumpiness
+    $("#no-call").addClass("hide");
+    $("#new-call").css("visibility", "hidden");
+    $("#new-call").removeClass("hide");
+
+    if (typeof directionsMap !== "undefined") {
+      directionsMap = undefined;
+    }
     directionsMap = new Microsoft.Maps.Map("#directionsMap", {
       showDashboard: false,
-      zoom: 16
+      minZoom: 14,
+      maxZoom: 17
     });
     //Load the directions module and map
     Microsoft.Maps.loadModule("Microsoft.Maps.Directions", function() {
@@ -29,7 +38,7 @@ $(function() {
       directionsManager.addWaypoint(callWaypoint);
       //Specify the element in which the itinerary will be rendered.
       directionsManager.setRenderOptions({
-        autoUpdateMapView: true,
+        // autoUpdateMapView: false,
         displayDisclaimer: false,
         displayRouteSelector: false,
         firstWaypointPushpinOptions: {
@@ -58,24 +67,33 @@ $(function() {
         function(e) {
           var currentRoute = directionsManager.getCurrentRoute();
 
+          setDirectionMapView(currentRoute);
           setBirdseyeMap(currentRoute);
           setStreetsideMap(currentRoute);
           sanityCheckDirections(currentRoute);
         }
       );
     });
-    $("#disclaimer").show();
+    $("#disclaimer").removeClass("hide");
+  }
+  function setDirectionMapView(currentRoute) {
+    directionsMap.setView({
+      bounds: Microsoft.Maps.LocationRect.fromLocations(currentRoute.routePath)
+    });
+    $("#new-call").css("visibility", "visible");
   }
   function setBirdseyeMap(currentRoute) {
     var endLocation =
       currentRoute.routeLegs[currentRoute.routeLegs.length - 1]
         .endWaypointLocation;
 
-    birdseyeMap = new Microsoft.Maps.Map("#birdseyeMap", {
+    var birdseyeMap = new Microsoft.Maps.Map("#birdseyeMap", {
       showDashboard: false,
       center: endLocation,
-      mapTypeId: Microsoft.Maps.MapTypeId.aerial,
-      zoom: 18
+      mapTypeId: Microsoft.Maps.MapTypeId.aerial
+    });
+    birdseyeMap.setView({
+      zoom: 17
     });
     // Uset birdseye imagery if available
     Microsoft.Maps.getIsBirdseyeAvailable(
@@ -103,13 +121,15 @@ $(function() {
       currentRoute.routeLegs[currentRoute.routeLegs.length - 1]
         .endWaypointLocation;
 
-    streetsideMap = new Microsoft.Maps.Map("#streetsideMap", {
+    var streetsideMap = new Microsoft.Maps.Map("#streetsideMap", {
       center: endLocation,
       mapTypeId: Microsoft.Maps.MapTypeId.streetside,
       streetsideOptions: {
         locationToLookAt: endLocation,
         overviewMapMode: Microsoft.Maps.OverviewMapMode.hidden,
         showCurrentAddress: false,
+        showHeadingCompass: false,
+        showProblemReporting: false,
         showExitButton: false,
         showZoomButtons: false,
         disablePanoramaNavigation: true
@@ -146,7 +166,10 @@ $(function() {
   }
 
   function directionsError(e) {
-    alert("Error: " + e.message + "\r\nResponse Code: " + e.responseCode);
+    $("#top").append(
+      `<div class="error"><strong>Warning:</strong> ${e.message}</div>`
+    );
+    $("#new-call").addClass("hide");
   }
 
   // Adds a leading 0
@@ -159,15 +182,11 @@ $(function() {
   function reset() {
     $("#top .error").remove();
     $("#top .call").remove();
-    $("#counter").hide();
-    $("#new-call").hide();
-    $("#no-call").show();
-    $("#waiting").show();
-    $("#directionsItinerary").html("");
-    $("#directionsMap").html("");
-    $("#birdseyeMap").html("");
-    $("#streetsideMap").html("");
-    $("#disclaimer").hide();
+    $("#counter").addClass("hide");
+    $("#new-call").addClass("hide");
+    $("#no-call").removeClass("hide");
+    $("#waiting").removeClass("hide");
+    $("#disclaimer").addClass("hide");
   }
 
   reset();
@@ -181,14 +200,15 @@ $(function() {
     reset();
 
     // Starts the timer
-    $("#waiting").hide();
+    $("#waiting").addClass("hide");
     $("#counter #minutes").html("0");
     $("#counter #seconds").html("00");
-    $("#counter").show();
+    $("#counter").removeClass("hide");
 
     var tick = function() {
       if (minutes >= 2) {
         reset();
+        clearInterval(timer);
       } else {
         if (seconds >= 59) {
           seconds = 0;
@@ -212,7 +232,7 @@ $(function() {
 
     // Populates the call details
     var callDom = `<div class="call">
-      <div class="time">${moment(call.time).format("kk:mma")}</div>
+      <div class="time">${moment(call.time).format("h:mma")}</div>
       <ul class="address">
         ${call.address.map(i => `<li>` + i + `</li>`).join("")}
       </ul>
@@ -225,10 +245,6 @@ $(function() {
 
     // Generates the map
     GetMap(call.address[0]);
-
-    // Unhides the call
-    $("#no-call").hide();
-    $("#new-call").show();
   }
 
   // When socket is received, start a new call

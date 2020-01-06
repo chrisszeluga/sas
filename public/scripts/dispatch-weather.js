@@ -3,7 +3,7 @@ $(function() {
 		var hours = data.hourly.data;
 
 		new Timeline($("#timeline"), {
-			width: $(".scroll-container").width(),
+			width: $(".right").width(),
 			label_width: 100,
 			hour_spacing: 3,
 			units: "us",
@@ -76,10 +76,10 @@ $(function() {
 	                <div class="times d-inline-block float-right">
 		                <div class="issued-at small d-inline-block mr-2">Issued ${moment(
 							alert.time
-						).format("ddd MMM Do kk:mma")}</div>
+						).format("ddd MMM Do h:mma")}</div>
 		                <div class="expires-at small d-inline-block">Expires ${moment(
 							alert.expires
-						).format("ddd MMM Do kk:mma")}</div>
+						).format("ddd MMM Do h:mma")}</div>
 					</div>
 	                <div class="description clearfix small font-italic text-muted">${
 						alert.description
@@ -98,5 +98,5 @@ $(function() {
 	}
 
 	getWeather();
-	var runWeather = window.setInterval(getWeather, 360000);
+	var runWeather = window.setInterval(getWeather, 660000);
 });

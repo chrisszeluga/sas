@@ -14,7 +14,7 @@ const getWeatherData = async () => {
 	const response = await cachiosInstance.get(
 		`https://api.darksky.net/forecast/${darkskyKey}/39.04698,-77.05028?exclude=minutely,daily`,
 		{
-			ttl: 300
+			ttl: 600
 		}
 	);
 

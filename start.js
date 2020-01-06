@@ -12,9 +12,4 @@ const server = app.listen(app.get("port"), () => {
 const io = require("socket.io").listen(server);
 app.set("socketio", io);
 
-// Start mail server
-const mailController = require("./controllers/mailController");
-
-mailController.startMailServer();
-
 
