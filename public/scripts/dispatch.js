@@ -1,6 +1,12 @@
 $(function() {
   var socket = io();
 
+  // Refresh every day to grab any new updates
+  function refreshPage() {
+    window.location.reload(true);
+  }
+  window.setInterval(refreshPage, 86400000);
+
   // Function to create directions
   var directionsMap;
   var directionsManager;
