@@ -67,6 +67,7 @@ $(function() {
 		} else {
 			$("#weather-alerts").hide();
 		}
+		$("#weather-alerts").html("");
 		alerts.forEach(function(alert) {
 			$("#weather-alerts").append(`
 				<div class="weather-alert mb-2">
