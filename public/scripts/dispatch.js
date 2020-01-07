@@ -23,7 +23,7 @@ $(function() {
     }
     directionsMap = new Microsoft.Maps.Map("#directionsMap", {
       showDashboard: false,
-      minZoom: 14,
+      minZoom: 12,
       maxZoom: 17
     });
     //Load the directions module and map
@@ -44,7 +44,7 @@ $(function() {
       directionsManager.addWaypoint(callWaypoint);
       //Specify the element in which the itinerary will be rendered.
       directionsManager.setRenderOptions({
-        // autoUpdateMapView: false,
+        autoUpdateMapView: true,
         displayDisclaimer: false,
         displayRouteSelector: false,
         firstWaypointPushpinOptions: {
@@ -84,7 +84,8 @@ $(function() {
   }
   function setDirectionMapView(currentRoute) {
     directionsMap.setView({
-      bounds: Microsoft.Maps.LocationRect.fromLocations(currentRoute.routePath)
+      bounds: Microsoft.Maps.LocationRect.fromLocations(currentRoute.routePath),
+      padding: 80
     });
     $("#new-call").css("visibility", "visible");
   }
