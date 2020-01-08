@@ -1,12 +1,34 @@
 html,
 body {
 	height: 100%;
+	font-size: calc(1.1rem + 0.2vw);
 }
 
 body {
 	font-family: Lato, "Open Sans", "Segoe UI", Tahoma, sans-serif;
-	overflow-y: hidden;
 }
+
+h2 {
+	font-size: calc(1.325rem + 0.9vw);
+	font-weight: bold;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-bottom: calc(0.5rem + 0.2vw);
+}
+
+/* Primary styles */
 
 .bg-primary {
 	background-color: #3498db !important;
@@ -17,7 +39,7 @@ body {
 }
 
 .left {
-	padding: 1rem;
+	padding: calc(1rem + 1vw);
 }
 
 .left .logo {
@@ -28,6 +50,11 @@ body {
 .call {
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
+	position: absolute;
+	top: 200px;
+	font-size: calc(1.3rem + 0.2vw);
+	left: calc(1rem + 1vw);
+	right: calc(1rem + 1vw);
 }
 
 .call .time {
@@ -40,13 +67,19 @@ body {
 }
 
 .call ul.address li:first-child {
-	font-size: 1.25rem;
+	font-size: 140%;
 	font-weight: 700;
 }
 
 .call .type {
 	padding: 0.5rem 0;
 	font-weight: 700;
+}
+
+#no-call {
+	position: absolute;
+	left: 50px;
+	right: 50px;
 }
 
 #waiting {
@@ -64,7 +97,7 @@ body {
 
 /* COUNTER */
 #counter {
-	font-size: 4rem;
+	font-size: calc(1.375rem + 5vw);
 }
 
 /* MAP */
@@ -85,8 +118,12 @@ body {
 	height: 90vh;
 }
 
+#endResultMap {
+	height: 100%;
+}
+
 .hide {
-	display: none !important;
+	visibility: hidden !important;
 }
 
 /* HOSPITAL */
@@ -94,11 +131,11 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 1.5rem;
+	margin-bottom: 1rem;
 }
 
 .hospital .name {
-	font-size: 1.25rem;
+	font-size: calc(1.275rem + 0.2vw);
 }
 
 .hospital .statuses {
@@ -107,8 +144,8 @@ body {
 
 .hospital .statuses .color {
 	color: white;
-	padding: 5px 12px;
-	border-radius: 20px;
+	padding: 0.4rem 1rem;
+	border-radius: 3rem;
 	margin-right: 1rem;
 	text-transform: uppercase;
 	display: none;
@@ -136,7 +173,12 @@ body {
 
 .hospital .statuses .no {
 	margin-right: 1rem;
+	font-size: 80%;
 	display: none;
+}
+
+.updated {
+	margin-bottom: 1rem;
 }
 
 .weather-alert .description {

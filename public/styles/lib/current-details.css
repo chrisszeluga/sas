@@ -20,9 +20,9 @@
   text-align: center;
   left: -10px;
   white-space: nowrap;
-  font-size: 14px;
   margin: 0 auto;
-  max-width: 750px;
+  max-width: 75%;
+  font-size: 80%;
 }
 
 #currentDetails > div {
@@ -54,8 +54,18 @@
   border-radius: 3px;
   padding: 2px 5px;
 }
-#currentDetails .uv_index.uv0 .num {background-color: rgba(64, 191, 64, 0.6)}
-#currentDetails .uv_index.uv1 .num {background-color: rgba(255, 240, 0, 0.6)}
-#currentDetails .uv_index.uv2 .num {background-color: rgba(255, 127, 0, 0.5)}
-#currentDetails .uv_index.uv3 .num {background-color: rgba(255, 0, 0, 0.6)}
-#currentDetails .uv_index.uv4 .num {background-color: rgba(166, 89, 255, 0.75)}
+#currentDetails .uv_index.uv0 .num {
+  background-color: rgba(64, 191, 64, 0.6);
+}
+#currentDetails .uv_index.uv1 .num {
+  background-color: rgba(255, 240, 0, 0.6);
+}
+#currentDetails .uv_index.uv2 .num {
+  background-color: rgba(255, 127, 0, 0.5);
+}
+#currentDetails .uv_index.uv3 .num {
+  background-color: rgba(255, 0, 0, 0.6);
+}
+#currentDetails .uv_index.uv4 .num {
+  background-color: rgba(166, 89, 255, 0.75);
+}

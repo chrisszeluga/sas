@@ -22,12 +22,12 @@ html
             | :
             span#seconds 00
         .col-sm-9.h-100.d-flex.flex-column.right
-          #new-call.row.flex-grow-1
+          #new-call.row.flex-grow-1.hide
             .col
               #directionsMap
             .col
               .directions.d-flex.flex-column.justify-content-between
-                #birdseyeMap
+                #endResultMap
                 #streetsideMap
                 #disclaimer
                   p
@@ -172,12 +172,11 @@ html
 
     script(src='https://cdn.socket.io/socket.io-1.2.0.js')
     script(src='https://code.jquery.com/jquery-1.11.1.js')
-    //- This Bing Maps API key is a client-side key that is domain restricted. It is purposefully committed. 
-    script(src='https://www.bing.com/api/maps/mapcontrol?key=AkIUP452_CnvrnWNBvHEkF5xvPZoSfbW1dnQHq8vWmmgTk_ToTwPiOPRNxuYVeRk')
 
     script(src='scripts/lib/moment.min.js?hash=3dgP2Y')
     script(src='scripts/lib/timeline.js?hash=yiU4Qa')
 
-    script(src='scripts/dispatch.js?hash=oU6DOK')
-    script(src='scripts/dispatch-hospitals.js?hash=Bws7te')
-    script(src='scripts/dispatch-weather.js?hash=zvofQ0')
+    script(src='scripts/dispatch.js?hash=oU6DOM')
+    script(src='scripts/dispatch-hospitals.js?hash=Bws7tf')
+    script(src='scripts/dispatch-weather.js?hash=zvofQ1')
+

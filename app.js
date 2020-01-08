@@ -5,8 +5,13 @@ const routes = require("./routes/index");
 const helpers = require("./helpers");
 const errorHandlers = require("./handlers/errorHandlers");
 const multer = require("multer")();
+const morgan = require("morgan");
+const logger = require("./logger.js");
 
 const app = express();
+
+// logs
+// app.use(morgan("combined", { stream: logger.stream }));
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

@@ -7,162 +7,101 @@ $(function() {
   }
   window.setInterval(refreshPage, 86400000);
 
+  $.getScript(
+    "https://maps.googleapis.com/maps/api/js?key=AIzaSyAjQ2wRficR7ckwNsD2KBU3Zi4p8tESr38",
+    function() {
+      initMap();
+    }
+  );
+
   // Function to create directions
+
+  var directionsService;
+  var directionsRenderer;
+  var endResultRenderer;
+  var station;
   var directionsMap;
-  var directionsManager;
-  function GetMap(inputAddress) {
+  var endResultMap;
+  function initMap() {
+    directionsService = new google.maps.DirectionsService();
+    directionsRenderer = new google.maps.DirectionsRenderer({
+      hideRouteList: true
+    });
+    endResultRenderer = new google.maps.DirectionsRenderer({
+      preserveViewport: true,
+      hideRouteList: true
+    });
+    station = new google.maps.LatLng(39.047031, -77.051403);
+    directionsMap = new google.maps.Map(
+      document.getElementById("directionsMap"),
+      {
+        center: station,
+        scaleControl: false,
+        rotateControl: false,
+        zoomControl: false
+      }
+    );
+    endResultMap = new google.maps.Map(
+      document.getElementById("endResultMap"),
+      {
+        center: station,
+        zoom: 17,
+        scaleControl: false,
+        rotateControl: false,
+        zoomControl: false
+      }
+    );
+    directionsRenderer.setMap(directionsMap);
+    endResultRenderer.setMap(endResultMap);
+  }
+
+  function updateMap(inputAddress) {
     // Unhides the call
     // Needed before map drawing so Microsoft can size and zoom correctly
     // Using visibility as a proxy for hiding, to minimize map jumpiness
     $("#no-call").addClass("hide");
-    $("#new-call").css("visibility", "hidden");
+
+    var request = {
+      origin: station,
+      destination:
+        inputAddress + ", Montgomery County, Maryland, United States",
+      travelMode: "DRIVING"
+    };
+    directionsService.route(request, function(result, status) {
+      if (status !== "OK") {
+        directionsError(status);
+        return;
+      }
+
+      console.log(result);
+      endResultRenderer.setDirections(result);
+      directionsRenderer.setDirections(result);
+
+      endResultMap.setCenter(result.routes[0].legs[0].end_location);
+      endResultMap.setZoom(17);
+      sanityCheckDirections(result.routes[0].legs[0]);
+    });
+
     $("#new-call").removeClass("hide");
-
-    if (typeof directionsMap !== "undefined") {
-      directionsMap = undefined;
-    }
-    directionsMap = new Microsoft.Maps.Map("#directionsMap", {
-      showDashboard: false,
-      minZoom: 12,
-      maxZoom: 17
-    });
-    //Load the directions module and map
-    Microsoft.Maps.loadModule("Microsoft.Maps.Directions", function() {
-      //Create an instance of the directions manager.
-      directionsManager = new Microsoft.Maps.Directions.DirectionsManager(
-        directionsMap
-      );
-      //Create waypoints to route between.
-      var wvrsWaypoint = new Microsoft.Maps.Directions.Waypoint({
-        address: "Wheaton Rescue Squad",
-        location: new Microsoft.Maps.Location(39.04698, -77.05028)
-      });
-      directionsManager.addWaypoint(wvrsWaypoint);
-      var callWaypoint = new Microsoft.Maps.Directions.Waypoint({
-        address: inputAddress + ", Montgomery County, Maryland, United States"
-      });
-      directionsManager.addWaypoint(callWaypoint);
-      //Specify the element in which the itinerary will be rendered.
-      directionsManager.setRenderOptions({
-        autoUpdateMapView: true,
-        displayDisclaimer: false,
-        displayRouteSelector: false,
-        firstWaypointPushpinOptions: {
-          color: Microsoft.Maps.Color.fromHex("#3498DB")
-        },
-        lastWaypointPushpinOptions: {
-          title: "Dispatched Address"
-        }
-      });
-      directionsManager.setRequestOptions({
-        maxRoutes: 1,
-        routeDraggable: false
-      });
-      //Error handling
-      Microsoft.Maps.Events.addHandler(
-        directionsManager,
-        "directionsError",
-        directionsError
-      );
-      //Calculate directions.
-      directionsManager.calculateDirections();
-
-      Microsoft.Maps.Events.addHandler(
-        directionsManager,
-        "directionsUpdated",
-        function(e) {
-          var currentRoute = directionsManager.getCurrentRoute();
-
-          setDirectionMapView(currentRoute);
-          setBirdseyeMap(currentRoute);
-          setStreetsideMap(currentRoute);
-          sanityCheckDirections(currentRoute);
-        }
-      );
-    });
     $("#disclaimer").removeClass("hide");
-  }
-  function setDirectionMapView(currentRoute) {
-    directionsMap.setView({
-      bounds: Microsoft.Maps.LocationRect.fromLocations(currentRoute.routePath),
-      padding: 80
-    });
-    $("#new-call").css("visibility", "visible");
-  }
-  function setBirdseyeMap(currentRoute) {
-    var endLocation =
-      currentRoute.routeLegs[currentRoute.routeLegs.length - 1]
-        .endWaypointLocation;
-
-    var birdseyeMap = new Microsoft.Maps.Map("#birdseyeMap", {
-      showDashboard: false,
-      center: endLocation,
-      mapTypeId: Microsoft.Maps.MapTypeId.aerial
-    });
-    birdseyeMap.setView({
-      zoom: 17
-    });
-    // Uset birdseye imagery if available
-    Microsoft.Maps.getIsBirdseyeAvailable(
-      birdseyeMap.getCenter(),
-      birdseyeMap.getHeading(),
-      function(isAvailable) {
-        if (isAvailable) {
-          birdseyeMap.setView({ mapTypeId: Microsoft.Maps.MapTypeId.birdseye });
-        }
-      }
-    );
-    var birdseyeLayer = new Microsoft.Maps.Layer();
-    var birdseyePushpin = new Microsoft.Maps.Pushpin(endLocation);
-    birdseyeLayer.add(birdseyePushpin);
-    var birdseyePolyline = new Microsoft.Maps.Polyline(currentRoute.routePath, {
-      strokeColor: Microsoft.Maps.Color.fromHex("#3498DB"),
-      strokeThickness: 6
-    });
-    birdseyeLayer.add(birdseyePolyline);
-    birdseyeMap.layers.insert(birdseyeLayer);
-  }
-
-  function setStreetsideMap(currentRoute) {
-    var endLocation =
-      currentRoute.routeLegs[currentRoute.routeLegs.length - 1]
-        .endWaypointLocation;
-
-    var streetsideMap = new Microsoft.Maps.Map("#streetsideMap", {
-      center: endLocation,
-      mapTypeId: Microsoft.Maps.MapTypeId.streetside,
-      streetsideOptions: {
-        locationToLookAt: endLocation,
-        overviewMapMode: Microsoft.Maps.OverviewMapMode.hidden,
-        showCurrentAddress: false,
-        showHeadingCompass: false,
-        showProblemReporting: false,
-        showExitButton: false,
-        showZoomButtons: false,
-        disablePanoramaNavigation: true
-      }
-    });
   }
 
   function sanityCheckDirections(currentRoute) {
     // Sanity check route length and duration
-    var routeDistance =
-      currentRoute.routeLegs[currentRoute.routeLegs.length - 1].summary
-        .distance;
-    var routeTime =
-      currentRoute.routeLegs[currentRoute.routeLegs.length - 1].summary.time;
+    var routeDistance = currentRoute.distance.value;
+    var routeTime = currentRoute.duration.value;
 
     var errorText = "";
     var errors = 0;
 
-    if (routeDistance >= 10) {
+    if (routeDistance >= 16000) {
       errors++;
       errorText += "Distance is greater than 10 miles. ";
     }
 
-    if (routeTime >= 900) {
+    if (routeTime >= 1200) {
       errors++;
-      errorText += "Driving time is greater than 15 minutes. ";
+      errorText += "Driving time is greater than 20 minutes. ";
     }
 
     if (errors > 0) {
@@ -251,7 +190,7 @@ $(function() {
     $("#top").append(callDom);
 
     // Generates the map
-    GetMap(call.address[0]);
+    updateMap(call.address[0]);
   }
 
   // When socket is received, start a new call

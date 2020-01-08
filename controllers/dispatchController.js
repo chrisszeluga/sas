@@ -1,3 +1,5 @@
+const logger = require("../logger.js");
+
 const parseCall = msg => {
 	// Expecting a string in this format:
 	// CAD MSG: F1900154598 * TROUBLE BREATHING - ALS1 * 8206 GEORGIA AVE * SILVER SPRING PRI MOVE * Box Area: 0102 * Units: PE701, M701, FS01
@@ -92,7 +94,9 @@ exports.broadcastDispatch = async (req, res) => {
 			return callString.indexOf(v) >= 0;
 		})
 	) {
-		io.emit("new call", parseCall(callString));
+		const newCall = parseCall(callString);
+		logger.info("server.call.new", newCall);
+		io.emit("new call", newCall);
 	}
 
 	res.send({});

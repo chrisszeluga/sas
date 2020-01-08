@@ -3,11 +3,12 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const jsonframe = require("jsonframe-cheerio");
 const fs = require("fs").promises;
+const logger = require("../logger.js");
 
 // New caching instance
 const cachiosInstance = cachios.create(
   axios.create({
-    timeout: 15000
+    timeout: 55000
   })
 );
 
@@ -101,7 +102,9 @@ const buildHospitals = async () => {
 };
 
 exports.getHospitalsJson = async (req, res) => {
-  res.json(await buildHospitals());
+  const hospitals = await buildHospitals();
+  // logger.info("server.hospitals.update", hospitals);
+  res.json(hospitals);
 };
 
 exports.getHospitals = async (req, res) => {
