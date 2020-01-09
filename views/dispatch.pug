@@ -16,7 +16,7 @@ html
         .col-sm-3.h-100.text-white.bg-primary.left.d-flex.flex-column.justify-content-between
           #top
             img.logo(src='images/logo.png')
-            #waiting.hide Waiting for call...
+            #waiting.hide waiting for call...
           #counter.hide
             span#minutes 0
             | :
@@ -106,7 +106,7 @@ html
                       .color.orange rr
                       .color.purple tb
                       .no no alerts
-            #weather.dayDetails.mt-4.pt-4.border-top
+            #weather.dayDetails.border-top
               h2.float-left.mb-3 Weather
               .float-right.mt-1.d-flex.align-items-center
                 canvas#summary-icon(width='30', height='30')
@@ -167,7 +167,7 @@ html
                   span.val.swap
                     span.num.swip 
                     span.unit.swap mi
-            #weather-alerts
+            #weather-alerts.row
 
 
     script(src='https://cdn.socket.io/socket.io-1.2.0.js')

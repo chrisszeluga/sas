@@ -60,21 +60,20 @@ $(function() {
 
 	function updateAlerts(alerts) {
 		if (!alerts) {
+			$("#weather").removeClass("condensed");
+			$("#weather-alerts").addClass("hide");
+			$("#weather-alerts").html("");
 			return;
 		}
-		if (alerts.length > 0) {
-			$("#weather-alerts").show();
-		} else {
-			$("#weather-alerts").hide();
-		}
+		$("#weather").addClass("condensed");
 		$("#weather-alerts").html("");
 		alerts.forEach(function(alert) {
 			$("#weather-alerts").append(`
-				<div class="weather-alert mb-2">
-                	<div class="alert-title d-inline-block float-left font-weight-bold text-danger">${
+				<div class="weather-alert col">
+                	<div class="alert-title font-weight-bold text-danger">${
 						alert.title
 					}</div>
-	                <div class="times d-inline-block float-right">
+	                <div class="times">
 		                <div class="issued-at small d-inline-block mr-2">Issued ${moment(
 							alert.time
 						).format("ddd MMM Do h:mma")}</div>
@@ -88,6 +87,7 @@ $(function() {
                 </div>
 			`);
 		});
+		$("#weather-alerts").removeClass("hide");
 	}
 
 	function getWeather() {

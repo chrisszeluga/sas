@@ -30,7 +30,7 @@ body {
 	padding-bottom: 1rem;
 	margin-bottom: 1rem;
 	position: absolute;
-	top: 200px;
+	top: 150px;
 	left: 1rem;
 	right: 1rem;
 }
@@ -61,9 +61,10 @@ body {
 }
 
 #waiting {
-	font-size: 2rem;
-	padding: 5rem 0;
+	font-size: 1.5rem;
+	padding: 3rem 0;
 	opacity: 0.8;
+	text-align: center;
 }
 
 #top .error {
@@ -72,9 +73,9 @@ body {
 	background: white;
 	color: #212529;
 	position: absolute;
-	left: calc(1rem + 1vw);
-	right: calc(1rem + 1vw);
-	bottom: 250px;
+	left: 1rem
+	right: 1rem;
+	bottom: 150px;
 }
 
 /* COUNTER */
@@ -158,6 +159,17 @@ body {
 	display: none;
 }
 
+/* Weather */
 .weather-alert .description {
 	clear: both;
+}
+
+.dayDetails {
+	margin-top: 3.5rem;
+	padding-top: 3rem;
+}
+
+.dayDetails.condensed {
+	margin-top: 1rem;
+	padding-top: 1rem;
 }
