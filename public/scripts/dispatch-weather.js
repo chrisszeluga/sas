@@ -74,11 +74,8 @@ $(function() {
 						alert.title
 					}</div>
 	                <div class="times">
-		                <div class="issued-at small d-inline-block mr-2">Issued ${moment(
-							alert.time
-						).format("ddd MMM Do h:mma")}</div>
 		                <div class="expires-at small d-inline-block">Expires ${moment(
-							alert.expires
+							alert.expires * 1000
 						).format("ddd MMM Do h:mma")}</div>
 					</div>
 	                <div class="description clearfix small font-italic text-muted">${
