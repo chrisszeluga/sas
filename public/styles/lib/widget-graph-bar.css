@@ -16,6 +16,7 @@ body {
 
 body.day .dayDetails #summary {
   margin: 20px 5px 10px;
+  font-size: 16px;
 }
 
 body.day #timeline {

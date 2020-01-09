@@ -20,9 +20,9 @@
   text-align: center;
   left: -10px;
   white-space: nowrap;
+  font-size: 14px;
   margin: 0 auto;
-  max-width: 75%;
-  font-size: 80%;
+  max-width: 750px;
 }
 
 #currentDetails > div {

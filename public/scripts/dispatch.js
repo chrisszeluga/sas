@@ -7,6 +7,7 @@ $(function() {
   }
   window.setInterval(refreshPage, 86400000);
 
+  // This key is intended to be public. Domain restrictions are in place to prevent abuse.
   $.getScript(
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyAjQ2wRficR7ckwNsD2KBU3Zi4p8tESr38",
     function() {
@@ -73,7 +74,6 @@ $(function() {
         return;
       }
 
-      console.log(result);
       endResultRenderer.setDirections(result);
       directionsRenderer.setDirections(result);
 
