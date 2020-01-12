@@ -58,10 +58,14 @@ exports.getDispatches = async (req, res) => {
 exports.broadcastDispatch = async (req, res) => {
 	let io = req.app.get("socketio");
 
+	let reqBody = JSON.stringify(req.body);
+
 	// Expects incoming request body to be a multi-part form data object,
-	// like the one produced from Sendgrid's Incoming Mail Parse Functions.
+	// like the one produced from AWS SES Incoming Mail Functions.
 	// Regex is custom to match MCEN's email HTML template.
-	let callString = req.body.html
+	let callString = reqBody
+		.replace(/(\\r\\n|\\n|\\r|=)/gm, "")
+		.replace(/(\\)/gm, "")
 		.match(/<p> (.*)<\/p>/gm)[0]
 		.replace("<p> ", "")
 		.replace("</p>", "");
