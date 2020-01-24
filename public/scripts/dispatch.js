@@ -152,7 +152,7 @@ $(function() {
     $("#counter").removeClass("hide");
 
     var tick = function() {
-      if (minutes >= 2) {
+      if (minutes >= 4) {
         reset();
         clearInterval(timer);
       } else {
