@@ -31,5 +31,6 @@ npm run watch
 ## Functionality
 
 -   `GET /api/hospital`: Returns MIEMSS Region 5 Hospital Statuses
--   `POST /api/dispatch`: _In Progress_ Initiates incoming dispatch and triggers socket message
--   `GET /dispatch`: _In Progress_ Displays supplemental alerting screen with map
+-   `POST /api/dispatch`: Accepts incoming dispatch email and triggers socket message
+-   `GET /dispatch`: Displays supplemental alerting screen with map
+-   `GET /tablet`: Display for in-unit tablets of active call
