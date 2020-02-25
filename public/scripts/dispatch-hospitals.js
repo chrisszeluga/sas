@@ -37,6 +37,17 @@ $(function() {
 			}
 		});
 
+		// Update blue alert
+		var montgomeryBlue = data.blue.find(function(county) {
+			return county.title === 'Montgomery County';
+		})
+
+		if (montgomeryBlue.blue == true) {
+			$('#blue').removeClass("hide");
+		} else {
+			$('#blue').addClass("hide");
+		}
+
 		// Update time
 		var updatedAt = moment(data.updatedAt).format("h:mma");
 		$(".updated span").text(updatedAt);

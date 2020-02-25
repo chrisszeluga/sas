@@ -25,8 +25,17 @@ const getChatsData = async () => {
   jsonframe($);
 
   const frame = {
+    blue: {
+      _s: "#tblCounties tr:not(:first-child)",
+      _d: [
+        {
+          title: "td:nth-of-type(1)",
+          blue: "td:nth-of-type(2)"
+        }
+      ]
+    },
     hospitals: {
-      _s: "tr:not(:first-child)",
+      _s: "#tblHospitals tr:not(:first-child)",
       _d: [
         {
           title: "td:nth-of-type(1)",
@@ -42,7 +51,7 @@ const getChatsData = async () => {
     }
   };
 
-  let scrape = $("#tblHospitals").scrape(frame);
+  let scrape = $("body").scrape(frame);
   scrape.updatedAt = Date.now();
 
   return scrape;
@@ -65,6 +74,15 @@ const buildHospitals = async () => {
   ]);
 
   let returnData = {};
+  returnData.blue = [];
+
+  loadedChats.blue.forEach(function(item) {
+    returnData.blue.push({
+      title: item.title,
+      blue: typeof item.blue != "undefined" ? true : false
+    });
+  });
+
   returnData.hospitals = [];
 
   // Merge two data streams together

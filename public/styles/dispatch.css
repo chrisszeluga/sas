@@ -109,6 +109,15 @@ body {
 	visibility: hidden !important;
 }
 
+/* COUNTY */
+#blue {
+	float: right;
+    background: #0984e3;
+    color: #fff;
+    padding: 4px 1rem;
+    border-radius: 8px;
+}
+
 /* HOSPITAL */
 .hospital {
 	display: flex;
