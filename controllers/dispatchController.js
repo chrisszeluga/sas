@@ -2,7 +2,7 @@ const logger = require("../logger.js");
 
 const parseCall = msg => {
 	// Expecting a string in this format:
-	// CAD MSG: F1900154598 * TROUBLE BREATHING - ALS1 * 8206 GEORGIA AVE * SILVER SPRING PRI MOVE * Box Area: 0102 * Units: PE701, M701, FS01
+	// CAD MSG: F1900154598 * TROUBLE BREATHING - ALS1 * 8206 GEORGIA AVE * SILVER SPRING PRI MOVE * Box Area: 0102 * X/Y: 39.03009608 / -77.03256077 * Units: PE701, M701, FS01
 	if (!msg) {
 		return;
 	}
@@ -14,15 +14,26 @@ const parseCall = msg => {
 	let msgLength = msgSplit.length;
 
 	let box = "";
-	let addressLen = 3;
+	let xy = null;
+	let addressLen = 4;
+	let tg = null;
 
 	// The talkgroup is included in some cases. Therefore, we need to look one element prior for the box
 	// and edit the address field length
 	if (msgSplit[msgLength - 2].includes("TG")) {
-		box = msgSplit[msgLength - 3].replace("Box Area: ", "");
-		addressLen = 4;
+		box = msgSplit[msgLength - 4].replace("Box Area: ", "");
+		xy = msgSplit[msgLength - 3].replace("X/Y: ", "");
+		tg = msgSplit[msgLength - 2].replace("TG: ", "");
+		addressLen = 5;
 	} else {
-		box = msgSplit[msgLength - 2].replace("Box Area: ", "");
+		box = msgSplit[msgLength - 3].replace("Box Area: ", "");
+		xy = msgSplit[msgLength - 2].replace("X/Y: ", "");
+	}
+
+	if (xy != null) {
+		xycomps = xy.split(" / ");
+		lat = xycomps[0];
+		lon = xycomps[1];
 	}
 
 	let call = {
@@ -37,7 +48,10 @@ const parseCall = msg => {
 			.replace(/(, CWEMS)/, "")
 			.replace(/(, CWFULL)/, "")
 			.replace("Units: ", ""),
-		box: box
+		box: box,
+		lat: lat,
+		lon: lon,
+		tg: tg
 	};
 
 	let location = [];

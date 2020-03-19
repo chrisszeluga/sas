@@ -56,16 +56,17 @@ $(function() {
     endResultRenderer.setMap(endResultMap);
   }
 
-  function updateMap(inputAddress) {
+  function updateMap(lat, lon) {
     // Unhides the call
     // Needed before map drawing so Microsoft can size and zoom correctly
     // Using visibility as a proxy for hiding, to minimize map jumpiness
     $("#no-call").addClass("hide");
 
+    destination = new google.maps.LatLng(lat, lon);
+
     var request = {
       origin: station,
-      destination:
-        inputAddress + ", Montgomery County, Maryland, United States",
+      destination: destination,
       travelMode: "DRIVING"
     };
     directionsService.route(request, function(result, status) {
@@ -190,7 +191,7 @@ $(function() {
     $("#top").append(callDom);
 
     // Generates the map
-    updateMap(call.address[0]);
+    updateMap(call.lat, call.lon);
   }
 
   // When socket is received, start a new call
