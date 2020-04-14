@@ -12,163 +12,165 @@ html
     link(rel='stylesheet' type='text/css' href='styles/dispatch.css?hash=Jk101a')
   body.day
     .container-fluid.h-100
-      .row.h-100
-        .col-sm-3.h-100.text-white.bg-primary.left.d-flex.flex-column.justify-content-between
-          #top
-            img.logo(src='images/logo.png')
-            #waiting.hide waiting for call...
-          #counter.hide
-            span#minutes 0
-            | :
-            span#seconds 00
-        .col-sm-9.h-100.d-flex.flex-column.right
-          #new-call.row.flex-grow-1.hide
-            .col
-              #directionsMap
-            .col
-              .directions.d-flex.flex-column.justify-content-between
-                #endResultMap
-                #streetsideMap
-                #disclaimer
-                  p
-                    strong Not guaranteed to be accurate.
-                  p Always use the MDC to confirm running route.
-          #no-call
-            #chats
-              #blue.hide Montgomery County is on Blue Alert
-              h2 Hospital Statuses
-              p.small.text-muted.updated
-                | Last updated at 
-                span 
-              .row
-                .col.border-right
-                  .hospital#holy-cross-hospital
-                    .name Holy Cross Hospital
-                    .statuses
-                      .color.yellow y
-                      .color.red r
-                      .color.green md
-                      .color.orange rr
-                      .color.purple tb
-                      .no no alerts
-                  .hospital#suburban
-                    .name Suburban
-                    .statuses
-                      .color.yellow y
-                      .color.red r
-                      .color.green md
-                      .color.orange rr
-                      .color.purple tb
-                      .no no alerts
-                  .hospital#montgomery-general
-                    .name Medstar Montgomery
-                    .statuses
-                      .color.yellow y
-                      .color.red r
-                      .color.green md
-                      .color.orange rr
-                      .color.purple tb
-                      .no no alerts
-                  .hospital#white-oak
-                    .name White Oak
-                    .statuses
-                      .color.yellow y
-                      .color.red r
-                      .color.green md
-                      .color.orange rr
-                      .color.purple tb
-                      .no no alerts
-                  
-                .col.pl-4
-                  .hospital#shady-grove
-                    .name Shady Grove
-                    .statuses
-                      .color.yellow y
-                      .color.red r
-                      .color.green md
-                      .color.orange rr
-                      .color.purple tb
-                      .no no alerts
-                  .hospital#medstar-washington
-                    .name Medstar Washington
-                    .statuses
-                      .color.yellow y
-                      .color.red r
-                      .color.green md
-                      .color.orange rr
-                      .color.purple tb
-                      .no no alerts
-                  .hospital#childrens-national
-                    .name Childrens's National
-                    .statuses
-                      .color.yellow y
-                      .color.red r
-                      .color.green md
-                      .color.orange rr
-                      .color.purple tb
-                      .no no alerts
-            #weather.dayDetails.border-top
-              h2.float-left.mb-3 Weather
-              .float-right.mt-1.d-flex.align-items-center
-                canvas#summary-icon(width='30', height='30')
-                p#summary.mt-0.mb-0.pb-1 
-            #slider
-              .handle
-                .line
-            .scroll-container
-              #timeline.timeline_container
-                .timeline
-                  .stripes
-                  .hour_ticks
-                  .hours
-                  .temps
-            #currentDetails.mt-4.mb-4
-              p#currentDetailsTitle.pb-0.mb-1 Current Conditions
-              .section
-                .temperature
-                  span.label.swip Temp:
-                  span.val.swap
-                    span.num 
-                    span.unit &ring;
-                .precipProbability
-                  span.label.swip Precip:
-                  span.val.swap
-                    span.num.swip 
-                    span.unit.swap %
-              .section
-                .wind
-                  span.label.swip Wind:
-                  span.val.swap
-                    span.num.swip 
-                    span.unit.swap mph
-                    span.direction.d-inline-block.ml-1(style='') &uarr;
-                .pressure
-                  span.label.swip Pressure:
-                  span.val.swap
-                    span.num.swip 
-                    span.unit.swap mb
-              .section
-                .humidity
-                  span.label.swip Humidity:
-                  span.val.swap
-                    span.num.swip 
-                    span.unit.swap %
-                .dew_point
-                  span.label.swip Dew Pt:
-                  span.val.swap
-                    span.num 
-                    span.unit &ring;
-              .section
-                .uv_index
-                  span.label.swip UV Index:
-                  span.val.swap
-                    span.num 0
-                .visibility
-                  span.label.swip Visibility:
-                  span.val.swap
-                    span.num.swip 
-                    span.unit.swap mi
-            #weather-alerts.row
+      .row.bg-primary.p-3.d-flex.justify-content-between.align-items-center#stripe
+        img#logo(src='images/logo.png')
+      .row
+        #new-call.d-flex.p-4
+          .col
+            #directionsMap
+          .col
+            .directions.d-flex.flex-column.justify-content-between
+              #endResultMap
+              #streetsideMap
+              #disclaimer
+                p
+                  strong Not guaranteed to be accurate.
+                p Always use the MDC to confirm running route.
+        #no-call.p-4
+          #chats
+            #blue.hide Montgomery County is on Blue Alert
+            h2 Hospital Statuses
+            p.small.text-muted.updated
+              | Last updated at 
+              span 
+            .row
+              .col.border-right
+                .hospital#holy-cross-hospital
+                  .name Holy Cross Hospital
+                  .statuses
+                    .color.yellow y
+                    .color.red r
+                    .color.green md
+                    .color.orange rr
+                    .color.purple tb
+                    .no no alerts
+                .hospital#suburban
+                  .name Suburban
+                  .statuses
+                    .color.yellow y
+                    .color.red r
+                    .color.green md
+                    .color.orange rr
+                    .color.purple tb
+                    .no no alerts
+                .hospital#montgomery-general
+                  .name Medstar Montgomery
+                  .statuses
+                    .color.yellow y
+                    .color.red r
+                    .color.green md
+                    .color.orange rr
+                    .color.purple tb
+                    .no no alerts
+              .col.border-right.pl-4
+                .hospital#white-oak
+                  .name White Oak
+                  .statuses
+                    .color.yellow y
+                    .color.red r
+                    .color.green md
+                    .color.orange rr
+                    .color.purple tb
+                    .no no alerts
+                .hospital#shady-grove
+                  .name Shady Grove
+                  .statuses
+                    .color.yellow y
+                    .color.red r
+                    .color.green md
+                    .color.orange rr
+                    .color.purple tb
+                    .no no alerts
+                .hospital#holy-cross-germantown
+                  .name HC Germantown
+                  .statuses
+                    .color.yellow y
+                    .color.red r
+                    .color.green md
+                    .color.orange rr
+                    .color.purple tb
+                    .no no alerts
+              .col.pl-4
+                .hospital#medstar-washington
+                  .name Medstar Washington
+                  .statuses
+                    .color.yellow y
+                    .color.red r
+                    .color.green md
+                    .color.orange rr
+                    .color.purple tb
+                    .no no alerts
+                .hospital#childrens-national
+                  .name Childrens's National
+                  .statuses
+                    .color.yellow y
+                    .color.red r
+                    .color.green md
+                    .color.orange rr
+                    .color.purple tb
+                    .no no alerts
+          #weather.dayDetails.border-top
+            h2.float-left.mb-3 Weather
+            .float-right.mt-1.d-flex.align-items-center
+              canvas#summary-icon(width='30', height='30')
+              p#summary.mt-0.mb-0.pb-1 
+          #slider
+            .handle
+              .line
+          .scroll-container
+            #timeline.timeline_container
+              .timeline
+                .stripes
+                .hour_ticks
+                .hours
+                .temps
+          #currentDetails.mt-4.mb-4
+            p#currentDetailsTitle.pb-0.mb-1 Current Conditions
+            .section
+              .temperature
+                span.label.swip Temp:
+                span.val.swap
+                  span.num 
+                  span.unit &ring;
+              .precipProbability
+                span.label.swip Precip:
+                span.val.swap
+                  span.num.swip 
+                  span.unit.swap %
+            .section
+              .wind
+                span.label.swip Wind:
+                span.val.swap
+                  span.num.swip 
+                  span.unit.swap mph
+                  span.direction.d-inline-block.ml-1(style='') &uarr;
+              .pressure
+                span.label.swip Pressure:
+                span.val.swap
+                  span.num.swip 
+                  span.unit.swap mb
+            .section
+              .humidity
+                span.label.swip Humidity:
+                span.val.swap
+                  span.num.swip 
+                  span.unit.swap %
+              .dew_point
+                span.label.swip Dew Pt:
+                span.val.swap
+                  span.num 
+                  span.unit &ring;
+            .section
+              .uv_index
+                span.label.swip UV Index:
+                span.val.swap
+                  span.num 0
+              .visibility
+                span.label.swip Visibility:
+                span.val.swap
+                  span.num.swip 
+                  span.unit.swap mi
+          #weather-alerts.row
 
 
     script(src='https://cdn.socket.io/socket.io-1.2.0.js')

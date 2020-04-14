@@ -26,11 +26,11 @@ $(function() {
   function initMap() {
     directionsService = new google.maps.DirectionsService();
     directionsRenderer = new google.maps.DirectionsRenderer({
-      hideRouteList: true
+      hideRouteList: true,
     });
     endResultRenderer = new google.maps.DirectionsRenderer({
       preserveViewport: true,
-      hideRouteList: true
+      hideRouteList: true,
     });
     station = new google.maps.LatLng(39.047031, -77.051403);
     directionsMap = new google.maps.Map(
@@ -39,7 +39,7 @@ $(function() {
         center: station,
         scaleControl: false,
         rotateControl: false,
-        zoomControl: false
+        zoomControl: false,
       }
     );
     endResultMap = new google.maps.Map(
@@ -49,7 +49,7 @@ $(function() {
         zoom: 17,
         scaleControl: false,
         rotateControl: false,
-        zoomControl: false
+        zoomControl: false,
       }
     );
     directionsRenderer.setMap(directionsMap);
@@ -67,7 +67,7 @@ $(function() {
     var request = {
       origin: station,
       destination: destination,
-      travelMode: "DRIVING"
+      travelMode: "DRIVING",
     };
     directionsService.route(request, function(result, status) {
       if (status !== "OK") {
@@ -106,14 +106,14 @@ $(function() {
     }
 
     if (errors > 0) {
-      $("#top").append(
+      $("#waiting").insertAfter(
         `<div class="error"><strong>Warning:</strong> ${errorText}Map may not be accurate.</div>`
       );
     }
   }
 
   function directionsError(e) {
-    $("#top").append(
+    $("#waiting").insertAfter(
       `<div class="error"><strong>Warning:</strong> ${e.message}</div>`
     );
     $("#new-call").addClass("hide");
@@ -127,9 +127,9 @@ $(function() {
 
   // Resets the screen to a starting state
   function reset() {
-    $("#top .error").remove();
-    $("#top .call").remove();
-    $("#counter").addClass("hide");
+    $(".error").remove();
+    $(".call").remove();
+    $("#logo").show();
     $("#new-call").addClass("hide");
     $("#no-call").removeClass("hide");
     $("#waiting").removeClass("hide");
@@ -148,12 +148,28 @@ $(function() {
 
     // Starts the timer
     $("#waiting").addClass("hide");
-    $("#counter #minutes").html("0");
-    $("#counter #seconds").html("00");
-    $("#counter").removeClass("hide");
+
+    $("#logo").hide();
+
+    // Populates the call details
+    var callDom = `<div class="call">
+      <div class="meta">
+        <div class="type">${call.type}</div>
+        <div class="box">Box Area: ${call.box}</div>
+        <div class="units">${call.units}</div>
+      </div>
+      <ul class="address">
+        ${call.address.map((i) => `<li>` + i + `</li>`).join("")}
+      </ul>
+      <div id="counter">
+          <span id="minutes">0</span>:<span id="seconds">00</span>
+      </div>
+    </div>`;
+
+    $("#stripe").prepend(callDom);
 
     var tick = function() {
-      if (minutes >= 4) {
+      if (minutes >= 1) {
         reset();
         clearInterval(timer);
       } else {
@@ -176,19 +192,6 @@ $(function() {
     }
     // Starts the timer
     timer = setInterval(tick, 1000);
-
-    // Populates the call details
-    var callDom = `<div class="call">
-      <div class="time">${moment(call.time).format("h:mma")}</div>
-      <ul class="address">
-        ${call.address.map(i => `<li>` + i + `</li>`).join("")}
-      </ul>
-      <div class="type">${call.type}</div>
-      <div class="box">Box Area: ${call.box}</div>
-      <div class="units">${call.units}</div>
-    </div>`;
-
-    $("#top").append(callDom);
 
     // Generates the map
     updateMap(call.lat, call.lon);
