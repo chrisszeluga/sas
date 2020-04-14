@@ -305,7 +305,8 @@ var Timeline = function($container, params) {
     $hours
       .find(".hour")
       .eq(0)
-      .addClass("first");
+      .addClass("first")
+      .html("<span><strong>Now</strong></span>");
   };
 
   var create_stripes = function(stripes) {
@@ -400,14 +401,14 @@ var Timeline = function($container, params) {
       var redline_time = redline_hour + redline_minutes;
 
       $redline = $("<div/>", {
-        class: "redline"
+        class: "redline",
       });
       $redline.css({
         position: "absolute",
         left: Math.round((redline_time / 24) * 100) + "%",
         width: "1px",
         height: "100%",
-        background: "rgba(255,0,0,.5)"
+        background: "rgba(255,0,0,.5)",
       });
       $stripes_container.append($redline);
     }
