@@ -33,8 +33,8 @@ body {
 	list-style: none;
 	padding: 0;
 	flex: 1;
-    text-align: center;
-    margin-bottom: 0;
+	text-align: center;
+	margin-bottom: 0;
 }
 
 .call ul.address li:first-child {
@@ -48,15 +48,6 @@ body {
 
 #no-call {
 	position: absolute;
-
-}
-
-#waiting {
-	font-size: 2rem;
-	opacity: 0.8;
-	text-align: center;
-	color: white;
-	text-align: right;
 }
 
 #stripe {
@@ -68,10 +59,7 @@ body {
 	padding: 1rem;
 	background: white;
 	color: #212529;
-	position: absolute;
-	left: 1rem
-	right: 1rem;
-	bottom: 150px;
+	margin-top: 1rem;
 }
 
 /* COUNTER */
@@ -117,10 +105,10 @@ body {
 /* COUNTY */
 #blue {
 	float: right;
-    background: #0984e3;
-    color: #fff;
-    padding: 4px 1rem;
-    border-radius: 8px;
+	background: #0984e3;
+	color: #fff;
+	padding: 4px 1rem;
+	border-radius: 8px;
 }
 
 /* HOSPITAL */

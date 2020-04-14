@@ -95,25 +95,25 @@ $(function() {
     var errorText = "";
     var errors = 0;
 
-    if (routeDistance >= 16000) {
+    if (routeDistance >= 32000) {
       errors++;
-      errorText += "Distance is greater than 10 miles. ";
+      errorText += "Distance is greater than 20 miles. ";
     }
 
-    if (routeTime >= 1200) {
+    if (routeTime >= 1500) {
       errors++;
-      errorText += "Driving time is greater than 20 minutes. ";
+      errorText += "Driving time is greater than 25 minutes. ";
     }
 
     if (errors > 0) {
-      $("#waiting").insertAfter(
+      $("#error-box").html(
         `<div class="error"><strong>Warning:</strong> ${errorText}Map may not be accurate.</div>`
       );
     }
   }
 
   function directionsError(e) {
-    $("#waiting").insertAfter(
+    $("#error-box").html(
       `<div class="error"><strong>Warning:</strong> ${e.message}</div>`
     );
     $("#new-call").addClass("hide");
@@ -127,7 +127,7 @@ $(function() {
 
   // Resets the screen to a starting state
   function reset() {
-    $(".error").remove();
+    $("#error-box").html("");
     $(".call").remove();
     $("#logo").show();
     $("#new-call").addClass("hide");
@@ -145,9 +145,6 @@ $(function() {
   // Initiaties a new call
   function newCall(call) {
     reset();
-
-    // Starts the timer
-    $("#waiting").addClass("hide");
 
     $("#logo").hide();
 
@@ -169,7 +166,7 @@ $(function() {
     $("#stripe").prepend(callDom);
 
     var tick = function() {
-      if (minutes >= 1) {
+      if (minutes >= 4) {
         reset();
         clearInterval(timer);
       } else {
