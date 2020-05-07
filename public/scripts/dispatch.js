@@ -7,6 +7,11 @@ $(function() {
   }
   window.setInterval(refreshPage, 86400000);
 
+  // Refresh page when we get refresh server call
+  socket.on("refresh", function() {
+    refreshPage();
+  });
+
   // This key is intended to be public. Domain restrictions are in place to prevent abuse.
   $.getScript(
     "https://maps.googleapis.com/maps/api/js?key=AIzaSyAjQ2wRficR7ckwNsD2KBU3Zi4p8tESr38",
@@ -130,6 +135,7 @@ $(function() {
     $("#error-box").html("");
     $(".call").remove();
     $("#logo").show();
+    $("#notice").show();
     $("#new-call").addClass("hide");
     $("#no-call").removeClass("hide");
     $("#waiting").removeClass("hide");
@@ -147,6 +153,7 @@ $(function() {
     reset();
 
     $("#logo").hide();
+    $("#notice").hide();
 
     // Populates the call details
     var callDom = `<div class="call">

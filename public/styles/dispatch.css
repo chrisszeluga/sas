@@ -17,6 +17,11 @@ body {
 	width: 200px;
 }
 
+#notice {
+	color: white;
+	text-align: right;
+}
+
 .call {
 	color: white;
 	display: flex;
@@ -103,6 +108,16 @@ body {
 
 /* COUNTY */
 #blue {
+}
+
+#blue .name {
+	font-size: 1.25rem;
+	float: left;
+	color: #0984e3;
+	font-weight: bold;
+}
+
+#blue .statuses {
 	float: right;
 	background: #0984e3;
 	color: #fff;

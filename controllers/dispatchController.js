@@ -1,6 +1,6 @@
 const logger = require("../logger.js");
 
-const parseCall = msg => {
+const parseCall = (msg) => {
 	// Expecting a string in this format:
 	// CAD MSG: F1900154598 * TROUBLE BREATHING - ALS1 * 8206 GEORGIA AVE * SILVER SPRING PRI MOVE * Box Area: 0102 * X/Y: 39.03009608 / -77.03256077 * Units: PE701, M701, FS01
 	if (!msg) {
@@ -51,7 +51,7 @@ const parseCall = msg => {
 		box: box,
 		lat: lat,
 		lon: lon,
-		tg: tg
+		tg: tg,
 	};
 
 	let location = [];
@@ -67,6 +67,15 @@ const parseCall = msg => {
 
 exports.getDispatches = async (req, res) => {
 	res.render("dispatch");
+};
+
+exports.refreshScreen = async (req, res) => {
+	let io = req.app.get("socketio");
+
+	logger.info("server.refresh");
+	io.emit("refresh", true);
+
+	res.send({});
 };
 
 exports.broadcastDispatch = async (req, res) => {
@@ -105,7 +114,7 @@ exports.broadcastDispatch = async (req, res) => {
 		"PRS742B",
 		"UTV742",
 		"BUTV742",
-		"RD2"
+		"RD2",
 	];
 	if (
 		units.some(function(v) {

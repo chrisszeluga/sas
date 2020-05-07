@@ -6,6 +6,7 @@ const weatherController = require("../controllers/weatherController");
 const { catchErrors } = require("../handlers/errorHandlers");
 
 router.get("/dispatch", catchErrors(dispatchController.getDispatches));
+router.get("/dispatch/refresh", catchErrors(dispatchController.refreshScreen));
 router.post("/dispatch", catchErrors(dispatchController.broadcastDispatch));
 
 // router.get("/hospitals", catchErrors(hospitalController.getHospitals));
