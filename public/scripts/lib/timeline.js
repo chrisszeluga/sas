@@ -1,4 +1,4 @@
-var Timeline = function($container, params) {
+var Timeline = function ($container, params) {
   // Params list:
   //   {
   //     width: null,              // [optional] Width of the whole timeline. When set, it will remove labels as necessary in order to fit.
@@ -49,12 +49,12 @@ var Timeline = function($container, params) {
     timezone_offset = 0;
 
   // Convert cloud cover percentage into range (clear, partly cloudy, or overcast)
-  var cloud_cover_range = function(obj) {
-    if (obj.cloudCover < 0.25) {
+  var cloud_cover_range = function (obj) {
+    if (obj.clouds < 25) {
       return CLEAR; // Clear
-    } else if (obj.cloudCover < 0.59375) {
+    } else if (obj.clouds < 59.375) {
       return PARTLY_CLOUDY; // Partly Cloudy
-    } else if (obj.cloudCover < 0.9375) {
+    } else if (obj.clouds < 93.75) {
       return MOSTLY_CLOUDY; // Mostly Cloudy
     } else {
       return OVERCAST; // Overcast
@@ -65,7 +65,7 @@ var Timeline = function($container, params) {
 
   /* Gives the snow-to-water ratio at a given temperature. (Adam says this is a
    * best-fit to some NOAA data.) */
-  var snowToWaterRatio = function(t) {
+  var snowToWaterRatio = function (t) {
     var r;
     if (t) {
       r = Math.max(
@@ -83,32 +83,32 @@ var Timeline = function($container, params) {
   };
 
   // Convert inches/hr to intensity
-  var inchesPerHourToIntensity = function(inches, hourly) {
+  var inchesPerHourToIntensity = function (inches, hourly) {
     var exp = hourly ? -3.0 : -2.209389806;
     return 4.0 * (1.0 - Math.exp(exp * Math.sqrt(inches)));
   };
 
   // Convert inches/hr to estimated dBZ
-  var inPerHourToEstimatedDBZ = function(inches_per_hour) {
+  var inPerHourToEstimatedDBZ = function (inches_per_hour) {
     return inches_per_hour <= 0
       ? 0
       : 10.0 * Math.log10(200 * Math.pow(25.4 * inches_per_hour, 1.6));
   };
 
-  var estimatedDBZ = function(obj) {
-    if (!obj.precipIntensity) {
+  var estimatedDBZ = function (obj) {
+    if (!obj.rain["1h"]) {
       return 0;
     }
 
-    var precip_intensity = obj.precipIntensity,
-      temperature = obj.temperature;
+    var precip_intensity = obj.rain["1h"],
+      temperature = obj.temp;
 
     if (params.units != "us") {
       precip_intensity /= 25.4;
       temperature = temperature * 1.8 + 32;
     }
 
-    if (obj.precipType === "snow") {
+    if (obj.weather[0].main === "Snow") {
       precip_intensity *= 0.34 * snowToWaterRatio(temperature);
     }
 
@@ -116,13 +116,13 @@ var Timeline = function($container, params) {
     return inPerHourToEstimatedDBZ(precip_intensity);
   };
 
-  var precipIntensity = function(data_point, for_hourly) {
-    if (!data_point.precipIntensity) {
+  var precipIntensity = function (data_point, for_hourly) {
+    if (!data_point.rain) {
       return 0;
     }
 
-    var precip_intensity = data_point.precipIntensity,
-      temperature = data_point.temperature;
+    var precip_intensity = data_point.rain["1h"],
+      temperature = data_point.temp;
 
     if (params.units != "us") {
       precip_intensity /= 25.4;
@@ -145,9 +145,9 @@ var Timeline = function($container, params) {
   };
 
   // Convert precip intensity into a range (light, medium, heavy, etc)
-  var precip_range = function(obj) {
+  var precip_range = function (obj) {
     var min_intensity = params.units == "us" ? 0.005 : 0.127;
-    if (!obj.precipIntensity || obj.precipIntensity < min_intensity) {
+    if (!obj.rain["1h"] || obj.rain["1h"] < min_intensity) {
       return 0;
     }
     var intensity = precipIntensity(obj, true);
@@ -158,7 +158,7 @@ var Timeline = function($container, params) {
   };
 
   // Get the hour of the day
-  var get_hour = function(time) {
+  var get_hour = function (time) {
     var date = new Date(1000 * time);
     date.setHours(date.getHours() + timezone_offset);
 
@@ -173,7 +173,7 @@ var Timeline = function($container, params) {
   };
 
   // Convert a timestamp to an hour string
-  var hour_str = function(time) {
+  var hour_str = function (time) {
     var hour = get_hour(time);
 
     if (params.format24) {
@@ -191,12 +191,12 @@ var Timeline = function($container, params) {
     return hour;
   };
 
-  var capitalize = function(str) {
+  var capitalize = function (str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
   // Create hour tick marks
-  var create_hour_ticks = function(hourly) {
+  var create_hour_ticks = function (hourly) {
     var $ticks = $container.find(".hour_ticks");
     $ticks.empty();
 
@@ -212,24 +212,18 @@ var Timeline = function($container, params) {
       x += spacing;
     }
 
-    $ticks
-      .find("span")
-      .eq(0)
-      .addClass("first");
-    $ticks
-      .find("span")
-      .eq(1)
-      .addClass("second");
+    $ticks.find("span").eq(0).addClass("first");
+    $ticks.find("span").eq(1).addClass("second");
   };
 
   // Check if an element is truncated
-  var truncated = function($elem, callback) {
+  var truncated = function ($elem, callback) {
     var $c = $elem
       .clone()
       .css({ display: "inline", width: "auto", visibility: "hidden" })
       .appendTo($elem.parent());
 
-    setTimeout(function() {
+    setTimeout(function () {
       var isTruncated = false;
       if ($c.width() > $elem.width()) isTruncated = true;
 
@@ -239,7 +233,7 @@ var Timeline = function($container, params) {
     }, 0);
   };
 
-  var create_hours = function(hourly) {
+  var create_hours = function (hourly) {
     $hours.empty();
 
     var date = new Date(1000 * start_time),
@@ -249,7 +243,7 @@ var Timeline = function($container, params) {
     date.setHours(date.getHours(), 0, 0, 0);
 
     for (var i = 0; i < hourly.length; i++) {
-      time = hourly[i].time;
+      time = hourly[i].dt;
       left = i == 0 ? 1 : position_in_timeline(time);
 
       if (left >= 0 && left < timeline_width) {
@@ -309,7 +303,7 @@ var Timeline = function($container, params) {
       .html("<span><strong>Now</strong></span>");
   };
 
-  var create_stripes = function(stripes) {
+  var create_stripes = function (stripes) {
     var $stripes_container = $container.find(".stripes");
     $stripes_container.empty();
 
@@ -369,30 +363,25 @@ var Timeline = function($container, params) {
           break;
       }
 
-      $label = $("<span />")
-        .html(label)
-        .appendTo($span);
+      $label = $("<span />").html(label).appendTo($span);
       $span.appendTo($stripes_container);
       num_intervals++;
       hours_offset += stripes[i].num_hours;
     }
 
-    $stripes_container
-      .find("> span")
-      .eq(0)
-      .addClass("first");
+    $stripes_container.find("> span").eq(0).addClass("first");
 
     // Remove any labels that are truncated (if there are more than 12 hours)
     if (params.numHours > 12) {
-      $stripes_container.find("> span > span").each(function(i, elem) {
-        truncated($(elem), function(isTruncated) {
+      $stripes_container.find("> span > span").each(function (i, elem) {
+        truncated($(elem), function (isTruncated) {
           if (isTruncated) $(elem).remove();
         });
       });
     }
 
     if (params.redline) {
-      var redline_date = new Date(currently.time * 1000);
+      var redline_date = new Date(current.dt * 1000);
       redline_date.setHours(redline_date.getHours() + timezone_offset);
       var redline_hour = redline_date.getHours();
       var redline_minutes = redline_date.getMinutes();
@@ -414,14 +403,14 @@ var Timeline = function($container, params) {
     }
   };
 
-  var create_temperatures = function(hourly) {
+  var create_temperatures = function (hourly) {
     var $temps_container = $container.find(".temps");
     $temps_container.empty();
 
     if (params.event === true) {
       let icon_container = $("<div />")
         .addClass("icons")
-        .appendTo($(".timeline"));
+        .appendTo($(".dtline"));
     }
 
     // Find min / max temperatures
@@ -429,20 +418,20 @@ var Timeline = function($container, params) {
       max_temp = -Infinity;
 
     for (var i = 0; i < hourly.length; i++) {
-      if (hourly[i].temperature !== null) {
-        if (hourly[i].temperature < min_temp) min_temp = hourly[i].temperature;
+      if (hourly[i].temp !== null) {
+        if (hourly[i].temp < min_temp) min_temp = hourly[i].temp;
 
-        if (hourly[i].temperature > max_temp) max_temp = hourly[i].temperature;
+        if (hourly[i].temp > max_temp) max_temp = hourly[i].temp;
       }
     }
 
-    var add_temp = function(i) {
-      var time = hourly[i].time,
-        temp = hourly[i].temperature,
+    var add_temp = function (i) {
+      var time = hourly[i].dt,
+        temp = hourly[i].temp,
         opacity = 0.25 + (0.75 * (temp - min_temp)) / (max_temp - min_temp);
 
       if (params.event === true) {
-        var icon = hourly[i].icon;
+        var icon = hourly[i].weather[0].icon;
         opacity = 1;
       }
 
@@ -490,7 +479,7 @@ var Timeline = function($container, params) {
       }
       $elem.appendTo($temps_container);
       if (icon) {
-        $icon.appendTo($(".icons"));
+        $icon.appendTo($(".weather[0].icons"));
       }
     };
 
@@ -506,13 +495,10 @@ var Timeline = function($container, params) {
       }
     }
 
-    $temps_container
-      .find("> span")
-      .eq(0)
-      .addClass("first");
+    $temps_container.find("> span").eq(0).addClass("first");
   };
 
-  var create_now_line = function() {
+  var create_now_line = function () {
     $container.find(".now").remove();
 
     var now = new Date().getTime() / 1000,
@@ -520,28 +506,25 @@ var Timeline = function($container, params) {
 
     if (left < 0 || left > timeline_width) return;
 
-    $("<span />")
-      .addClass("now")
-      .css("left", left)
-      .appendTo($container);
+    $("<span />").addClass("now").css("left", left).appendTo($container);
   };
 
   // Calculate the position in the timeline for the given timestamp
-  var position_in_timeline = function(time) {
+  var position_in_timeline = function (time) {
     var pps = timeline_width / (params.numHours * 3600),
       sec_from_start = time - start_time;
 
     return sec_from_start * pps;
   };
 
-  var add_icons = function(hourly) {
+  var add_icons = function (hourly) {
     var $icon_container = $("<div />")
       .addClass("icon-container")
       .css("width", timeline_width);
     for (let i = 0; i < hourly.length; i++) {}
   };
 
-  var add_last_unit = function(eventLastHour) {
+  var add_last_unit = function (eventLastHour) {
     // Conditions: this will only run if the event embed exists and the number of hours is less than or equal to 12
     // Add tick
     var class_name = $(".hour_ticks span:last-child").hasClass("even")
@@ -552,7 +535,7 @@ var Timeline = function($container, params) {
       .css("left", timeline_width - 2 + "px");
     $(".hour_ticks").append(tick);
     // Add time
-    var time = hour_str(eventLastHour.time);
+    var time = hour_str(eventLastHour.dt);
     var $hour = $("<span />")
       .addClass("hour")
       .css(params.reversed ? "right" : "left", timeline_width - 20 + "px");
@@ -562,7 +545,7 @@ var Timeline = function($container, params) {
       .appendTo($hour);
     $hours.append($hour);
     // add temp
-    var temp = eventLastHour.temperature;
+    var temp = eventLastHour.temp;
     var $elem = $("<span><span>" + Math.round(temp) + "&deg;</span></span>");
     if (params.reversed) {
       $elem.css("right", timeline_width - 20 + "px");
@@ -571,26 +554,29 @@ var Timeline = function($container, params) {
     }
     $(".temps").append($elem);
     // Add icon
-    var icon = eventLastHour.icon;
+    var icon = eventLastHour.weather[0].icon;
     var $icon = $(
       '<span class="skycon icon" style="width:25px;height:25px"><canvas width="64" height="64" style="width:100%;height:100%" class=' +
         icon +
         "></canvas></span>"
     );
     $icon.css("left", timeline_width - 30 + "px");
-    $(".icons").append($icon);
+    $(".weather[0].icons").append($icon);
   };
 
-  var center_info = function() {
+  var center_info = function () {
     $(".hour_ticks .first").css("left", timeline_width / 2 + "px");
     $(".hours .hour.first").css("left", timeline_width / 2 - 14 + "px");
     $(".temps .first").css("left", timeline_width / 2 - 11 + "px");
-    $(".icons .icon").css("left", timeline_width / 2 - 10 + "px");
+    $(".weather[0].icons .weather[0].icon").css(
+      "left",
+      timeline_width / 2 - 10 + "px"
+    );
   };
 
   // Load the timeline for the given location
-  timeline.load = function(hours, tz_offset, currently) {
-    start_time = hours[0].time;
+  timeline.load = function (hours, tz_offset, current) {
+    start_time = hours[0].dt;
     timezone_offset =
       (tz_offset || 0) + new Date(1000 * start_time).getTimezoneOffset() / 60;
 
@@ -604,14 +590,14 @@ var Timeline = function($container, params) {
       eventLastHour = hourly.pop();
     }
 
-    // Change the current hour in the timeline to match currently, if provided
-    if (currently) {
+    // Change the current hour in the timeline to match current, if provided
+    if (current) {
       for (var i = 0; i < hourly.length; i++) {
-        if (Math.abs(hourly[i].time - currently.time) <= 1800) {
+        if (Math.abs(hourly[i].dt - current.dt) <= 1800) {
           for (var prop in hourly[i]) {
             if (prop == "time") continue;
             hourly[i][prop] =
-              currently[prop] != null ? currently[prop] : hourly[i][prop];
+              current[prop] != null ? current[prop] : hourly[i][prop];
           }
           break;
         }
@@ -652,22 +638,29 @@ var Timeline = function($container, params) {
       previousSkyConditionType = -1;
 
     if (hourly[0].precipType) {
-      prev_p_type = hourly[0].icon;
+      prev_p_type = hourly[0].weather[0].icon;
     }
 
     for (var i = 0; i < hourly.length; i++) {
       let precipType =
         hourly[i].precipType != null ? hourly[i].precipType : "rain";
-      let cloudCover = hourly[i].cloudCover;
-      let icon = hourly[i].icon;
+      let cloudCover = hourly[i].clouds;
+      let weatherMain = hourly[i].weather[0].main;
       let skyConditionType = 0;
       let tmp_stripe = {};
 
       let isPrecip =
-        icon === "rain" || icon === "snow" || icon === "sleet" ? true : false;
+        weatherMain === "Rain" ||
+        weatherMain === "Snow" ||
+        weatherMain === "Drizzle" ||
+        weatherMain === "Thunderstorm"
+          ? true
+          : false;
+
+      console.log(i + " " + isPrecip);
 
       if (isPrecip) {
-        let isFreezingPrecip = precipType === "snow" || precipType === "sleet";
+        let isFreezingPrecip = precipType === "Snow";
         if (estimatedDBZ(hourly[i]) <= 25) {
           skyConditionType = isFreezingPrecip ? LIGHT_SNOW : LIGHT_RAIN;
         } else {

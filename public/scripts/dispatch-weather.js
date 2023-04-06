@@ -1,6 +1,6 @@
-$(function() {
+$(function () {
 	function updateTimeline(data) {
-		var hours = data.hourly.data;
+		var hours = data.hourly;
 
 		new Timeline($("#timeline"), {
 			width: $(".right").width(),
@@ -24,38 +24,38 @@ $(function() {
 				"medium-snow": "snow",
 				"very-light-snow": "flurries",
 				"light-snow": "light snow",
-				"heavy-snow": "heavy snow"
-			}
+				"heavy-snow": "heavy snow",
+			},
 		}).load(hours, -5);
 	}
 
 	function updateCurrentText(data) {
-		var currently = data.currently;
+		var currently = data.current;
 
-		$("#summary").text(data.hourly.summary);
+		// $("#summary").text(data.hourly.summary);
 
-		$("#currentDetails .temperature .num").text(
-			currently.temperature.toFixed()
+		$("#currentDetails .temperature .num").text(currently.temp.toFixed());
+		$("#currentDetails .feels_like .num").text(
+			currently.feels_like.toFixed()
 		);
-		$("#currentDetails .precipProbability .num").text(
-			currently.precipProbability * 100
-		);
-		$("#currentDetails .wind .num").text(currently.windSpeed.toFixed());
-		if (currently.windSpeed >= 32) {
+		$("#currentDetails .wind .num").text(currently.wind_speed.toFixed());
+		if (currently.wind_speed >= 32) {
 			$("#currentDetails .wind .val").css("color", "red");
 			$("#currentDetails .wind .val").css("font-weight", "bold");
 		}
 		$("#currentDetails .wind .direction").css(
 			"transform",
-			`rotate(${currently.windBearing}deg)`
+			`rotate(${currently.wind_deg}deg)`
 		);
-		$("#currentDetails .pressure .num").text(currently.pressure.toFixed());
-		$("#currentDetails .humidity .num").text(
-			(currently.humidity * 100).toFixed()
+		$("#currentDetails .clouds .num").text(currently.clouds.toFixed());
+		$("#currentDetails .humidity .num").text(currently.humidity.toFixed());
+		$("#currentDetails .dew_point .num").text(
+			currently.dew_point.toFixed()
 		);
-		$("#currentDetails .dew_point .num").text(currently.dewPoint.toFixed());
-		$("#currentDetails .uv_index .num").text(currently.uvIndex);
-		$("#currentDetails .visibility .num").text(currently.visibility);
+		$("#currentDetails .uv_index .num").text(currently.uvi);
+		$("#currentDetails .visibility .num").text(
+			(currently.visibility * 0.00062137).toFixed(2)
+		);
 	}
 
 	function updateAlerts(alerts) {
@@ -67,15 +67,15 @@ $(function() {
 		}
 		$("#weather").addClass("condensed");
 		$("#weather-alerts").html("");
-		alerts.forEach(function(alert) {
+		alerts.forEach(function (alert) {
 			$("#weather-alerts").append(`
 				<div class="weather-alert col">
                 	<div class="alert-title font-weight-bold text-danger">${
-						alert.title
+						alert.event
 					}</div>
 	                <div class="times">
 		                <div class="expires-at small d-inline-block">Expires ${moment(
-							alert.expires * 1000
+							alert.end * 1000
 						).format("ddd MMM Do h:mma")}</div>
 					</div>
 	                <div class="description clearfix small font-italic text-muted">${
@@ -88,7 +88,7 @@ $(function() {
 	}
 
 	function getWeather() {
-		$.get("/api/weather", function(data) {
+		$.get("/api/weather", function (data) {
 			updateTimeline(data);
 			updateCurrentText(data);
 			updateAlerts(data.alerts);

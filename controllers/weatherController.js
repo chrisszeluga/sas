@@ -6,15 +6,15 @@ const darkskyKey = process.env.DARK_SKY;
 // New caching instance
 const cachiosInstance = cachios.create(
 	axios.create({
-		timeout: 10000
+		timeout: 10000,
 	})
 );
 
 const getWeatherData = async () => {
 	const response = await cachiosInstance.get(
-		`https://api.darksky.net/forecast/${darkskyKey}/39.04698,-77.05028?exclude=minutely,daily`,
+		`https://api.openweathermap.org/data/3.0/onecall?lat=39.04698&lon=-77.05028&exclude=minutely,daily&units=imperial&appid=${darkskyKey}`,
 		{
-			ttl: 600
+			ttl: 600,
 		}
 	);
 

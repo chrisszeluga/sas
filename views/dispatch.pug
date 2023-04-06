@@ -113,7 +113,7 @@ html
                   .name Montgomery County
                   .statuses Blue Alert
           #weather.dayDetails.border-top
-            h2.float-left.mb-3 Weather
+            h2.mb-3 Weather
             .float-right.mt-1.d-flex.align-items-center
               canvas#summary-icon(width='30', height='30')
               p#summary.mt-0.mb-0.pb-1 
@@ -135,11 +135,11 @@ html
                 span.val.swap
                   span.num 
                   span.unit &ring;
-              .precipProbability
-                span.label.swip Precip:
+              .feels_like
+                span.label.swip Feels Like:
                 span.val.swap
                   span.num.swip 
-                  span.unit.swap %
+                  span.unit.swap &ring;
             .section
               .wind
                 span.label.swip Wind:
@@ -147,11 +147,11 @@ html
                   span.num.swip 
                   span.unit.swap mph
                   span.direction.d-inline-block.ml-1(style='') &uarr;
-              .pressure
-                span.label.swip Pressure:
+              .clouds
+                span.label.swip Clouds:
                 span.val.swap
                   span.num.swip 
-                  span.unit.swap mb
+                  span.unit.swap %
             .section
               .humidity
                 span.label.swip Humidity:

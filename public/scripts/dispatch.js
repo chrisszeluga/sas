@@ -173,7 +173,7 @@ $(function() {
     $("#stripe").prepend(callDom);
 
     var tick = function() {
-      if (minutes >= 4) {
+      if (minutes >= 3) {
         reset();
         clearInterval(timer);
       } else {

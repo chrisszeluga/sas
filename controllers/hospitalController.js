@@ -108,7 +108,7 @@ const buildHospitals = async () => {
         typeof chatsHospital.alert.purple != "undefined" ? true : false;
     } else {
       // if not, chats hospital named changed, warn us
-      console.warn(`Warning: Cannot find ${hospital.title} in CHATS`);
+      console.warn(`Warning: Cannot find ${item.title} in CHATS`);
     }
 
     returnData.hospitals.push(buildHospital);
