@@ -28,14 +28,6 @@ body.day #timeline {
   padding-bottom: 5px;
 }
 
-body.day #currentDetails .section {
-  width: 22%;
-}
-
-body.day #currentDetails {
-  width: auto !important;
-}
-
 #attribution {
   font-size: 0.8em;
   padding-right: 15px;

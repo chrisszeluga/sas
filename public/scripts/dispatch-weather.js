@@ -38,6 +38,9 @@ $(function () {
 		$("#currentDetails .feels_like .num").text(
 			currently.feels_like.toFixed()
 		);
+		$("#currentDetails .conditions .num").text(
+			currently.weather[0].description
+		);
 		$("#currentDetails .wind .num").text(currently.wind_speed.toFixed());
 		if (currently.wind_speed >= 32) {
 			$("#currentDetails .wind .val").css("color", "red");
@@ -49,12 +52,14 @@ $(function () {
 		);
 		$("#currentDetails .clouds .num").text(currently.clouds.toFixed());
 		$("#currentDetails .humidity .num").text(currently.humidity.toFixed());
-		$("#currentDetails .dew_point .num").text(
-			currently.dew_point.toFixed()
-		);
 		$("#currentDetails .uv_index .num").text(currently.uvi);
 		$("#currentDetails .visibility .num").text(
 			(currently.visibility * 0.00062137).toFixed(2)
+		);
+
+		$("#currentDetails #currentIcon img").attr(
+			"src",
+			`https://openweathermap.org/img/wn/${currently.weather[0].icon}@2x.png`
 		);
 	}
 

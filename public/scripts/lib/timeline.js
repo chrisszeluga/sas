@@ -174,7 +174,7 @@ var Timeline = function ($container, params) {
 
   // Convert a timestamp to an hour string
   var hour_str = function (time) {
-    var hour = get_hour(time);
+    var hour = get_hour(time) + 1;
 
     if (params.format24) {
       return hour + ":00";
@@ -296,11 +296,7 @@ var Timeline = function ($container, params) {
       date.setHours(date.getHours() + 1);
     }
 
-    $hours
-      .find(".hour")
-      .eq(0)
-      .addClass("first")
-      .html("<span><strong>Now</strong></span>");
+    $hours.find(".hour").eq(0).addClass("first").html("<span>Now</span>");
   };
 
   var create_stripes = function (stripes) {
@@ -656,8 +652,6 @@ var Timeline = function ($container, params) {
         weatherMain === "Thunderstorm"
           ? true
           : false;
-
-      console.log(i + " " + isPrecip);
 
       if (isPrecip) {
         let isFreezingPrecip = precipType === "Snow";

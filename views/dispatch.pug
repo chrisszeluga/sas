@@ -113,7 +113,7 @@ html
                   .name Montgomery County
                   .statuses Blue Alert
           #weather.dayDetails.border-top
-            h2.mb-3 Weather
+            h2.mb-0 Weather
             .float-right.mt-1.d-flex.align-items-center
               canvas#summary-icon(width='30', height='30')
               p#summary.mt-0.mb-0.pb-1 
@@ -128,41 +128,41 @@ html
                 .hours
                 .temps
           #currentDetails.mt-4.mb-4
-            p#currentDetailsTitle.pb-0.mb-1 Current Conditions
+            #currentIcon.float-left
+              img
+            p#currentDetailsTitle.pb-0.mb-0 Current Conditions at 2400 Arcola
             .section
+              .conditions
+                span.val.swap
+                  span.num 
               .temperature
                 span.label.swip Temp:
                 span.val.swap
                   span.num 
                   span.unit &ring;
+            .section
               .feels_like
                 span.label.swip Feels Like:
                 span.val.swap
                   span.num.swip 
                   span.unit.swap &ring;
-            .section
               .wind
                 span.label.swip Wind:
                 span.val.swap
                   span.num.swip 
                   span.unit.swap mph
                   span.direction.d-inline-block.ml-1(style='') &uarr;
-              .clouds
-                span.label.swip Clouds:
-                span.val.swap
-                  span.num.swip 
-                  span.unit.swap %
             .section
               .humidity
                 span.label.swip Humidity:
                 span.val.swap
                   span.num.swip 
                   span.unit.swap %
-              .dew_point
-                span.label.swip Dew Pt:
+              .clouds
+                span.label.swip Clouds:
                 span.val.swap
-                  span.num 
-                  span.unit &ring;
+                  span.num.swip 
+                  span.unit.swap %
             .section
               .uv_index
                 span.label.swip UV Index:
